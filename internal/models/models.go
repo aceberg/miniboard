@@ -19,8 +19,8 @@ type Host struct {
 
 // Panel - board element
 type Panel struct {
-	ID int
-	Name string
+	ID    int
+	Name  string
 	Hosts []Host
 }
 

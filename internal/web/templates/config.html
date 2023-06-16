@@ -1,0 +1,53 @@
+{{ define "config" }}
+
+<body>
+    <div class="container mt-5">
+    <div class="row">
+        <div class="col">
+        <table class="table">
+            <form action="/config_save/" method="post">
+                <tr>
+                    <td>Host</td>
+                    <td><input name="host" type="text" class="form-control" value="{{ .Config.Host }}"></td>
+                </tr>
+                <tr>
+                    <td>Port</td>
+                    <td><input name="port" type="text" class="form-control" value="{{ .Config.Port }}"></td>
+                </tr>
+                <tr>
+                    <td>Theme</td>
+                    <td><select name="theme" class="form-select">
+                        <option selected>{{ .Config.Theme }}</option>
+                        {{ range .Themes }}
+                            <option value="{{ . }}">{{ . }}</option>
+                        {{ end }}
+                    </select></td>
+                </tr>
+                <tr>
+                    <td>Color mode</td>
+                    <td><select name="color" class="form-select">
+                        <option selected>{{ .Config.Color }}</option>
+                        <option value="light">light</option>
+                        <option value="dark">dark</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td><button type="submit" class="btn btn-primary">Save</button></td>
+                    <td></td>
+                </tr>
+            </form>
+        </table>
+        </div>
+        <div class="col">
+            <div class="alert alert-info" role="alert">
+                <p>● After changing <b>Host</b> or <b>Port</b> you need to restart the app</p>
+                <p>● <b>URLs</b> should be space separated</p>
+                <p>● <b>Other</b> - search for other keywords in .git/config (space separated)</p>
+            </div>
+        </div>
+    </div>
+    </div>
+        
+
+{{ template "footer" }}
+{{ end }}
