@@ -8,25 +8,35 @@ type Conf struct {
 	Color    string
 	Icon     string
 	ConfPath string
+	YamlPath string
+	ColorOn  string
+	ColorOff string
+	BtnWidth string
 }
 
 // Host - panel element
 type Host struct {
-	Addr string
-	Port string
-	Icon string
+	Name  string `yaml:"name"`
+	Addr  string `yaml:"addr"`
+	Port  string `yaml:"port"`
+	Icon  string `yaml:"icon"`
+	State bool
 }
 
 // Panel - board element
 type Panel struct {
-	ID    int
-	Name  string
-	Hosts []Host
+	Name  string `yaml:"name"`
+	Hosts []Host `yaml:"hosts"`
+}
+
+// Links - all links
+type Links struct {
+	Panels []Panel `yaml:"panels"`
 }
 
 // GuiData - web gui data
 type GuiData struct {
 	Config Conf
 	Themes []string
-	Panels []Panel
+	Links  Links
 }

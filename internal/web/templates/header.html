@@ -13,6 +13,17 @@
     <!-- Bootstrap and theme -->
     <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.0/dist/{{ .Config.Theme }}/bootstrap.min.css" rel="stylesheet">
 </head>
+<style>
+  .my-btn-width {
+      width: {{ .Config.BtnWidth }} !important;
+  }
+  .my-col-on {
+      color:{{ .Config.ColorOn }};
+  }
+  .my-col-off {
+      color:{{ .Config.ColorOff }};
+  }
+</style>
 <body>
     <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
         <div class="container">

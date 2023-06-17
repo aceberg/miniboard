@@ -6,15 +6,20 @@ import (
 
 	"github.com/aceberg/miniboard/internal/check"
 	"github.com/aceberg/miniboard/internal/conf"
+	"github.com/aceberg/miniboard/internal/yaml"
 )
 
 // Gui - start web server
-func Gui(confPath string) {
+func Gui(confPath, yamlPath string) {
 
 	AppConfig = conf.Get(confPath)
 	AppConfig.ConfPath = confPath
+	AppConfig.YamlPath = yamlPath
 	AppConfig.Icon = Icon
 	log.Println("INFO: starting web gui with config", AppConfig.ConfPath)
+
+	AllLinks = yaml.Read(AppConfig.YamlPath)
+	log.Println("AllLinks: ", AllLinks)
 
 	address := AppConfig.Host + ":" + AppConfig.Port
 
@@ -23,6 +28,7 @@ func Gui(confPath string) {
 	log.Println("=================================== ")
 
 	http.HandleFunc("/", indexHandler)                  // index.go
+	http.HandleFunc("/edit/", editHandler)              // edit.go
 	http.HandleFunc("/config/", configHandler)          // config.go
 	http.HandleFunc("/config_save/", saveConfigHandler) // config.go
 	err := http.ListenAndServe(address, nil)

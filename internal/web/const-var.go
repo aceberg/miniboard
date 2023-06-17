@@ -9,6 +9,8 @@ import (
 var (
 	// AppConfig - config for Web Gui
 	AppConfig models.Conf
+	// AllLinks - all links
+	AllLinks models.Links
 )
 
 // TemplHTML - html templates

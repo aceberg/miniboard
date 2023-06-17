@@ -3,29 +3,7 @@
 <body>
     <div class="container mt-5">
         <div class="row">
-            <h5>{{ .Path }}</h5>
-        </div>
-        <div class="row">
-            <code>.git/config</code>
-            <div class="col">
-                <form action="/file_save/" method="post">
-                    <input name="path" value="{{ .Path }}" type="hidden">
-                    <textarea name="text" rows="20" class="form-control">{{ index .Themes 0 }}</textarea>
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </form>
-                <br>
-            </div>
-            <div class="col">
-                <form action="/edit_block/" method="post">
-                    <input name="path" value="{{ .Path }}" type="hidden">
-                    <select name="blockname" class="form-select">
-                        {{ range $key, $value := .Config.BlockMap }}
-                            <option value="{{ $key }}">{{ $key }}</option>
-                        {{ end }}
-                    </select>
-                    <button type="submit" class="btn btn-primary">Add block</button>
-                </form>
-            </div>
+            <h5>Edit {{ .Themes }}</h5>
         </div>
     </div>
         

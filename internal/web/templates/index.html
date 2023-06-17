@@ -3,8 +3,29 @@
 <body>
     <div class="container">
         <br>
-        <div class="row">
-            <p>Test</p>
+        <div class="row text-center">
+            {{ range .Links.Panels }}
+            <div class="col-md-auto">
+                <a href="/edit?panel={{ .Name }}"><h5>{{ .Name }}</h5></a>
+                {{ range .Hosts }}
+                <p><a href="http://{{ .Addr }}:{{ .Port }}" target="_blank">
+                    <button class="btn btn-primary my-btn-width" type="button">
+                        {{ if .Icon }}
+                        <img src="{{ .Icon }}" style="height:1.3em;"/>&nbsp;
+                        {{ end }}
+                        {{ .Name }}
+                    </button>
+                    <button class="btn btn-primary">
+                        {{ if .State }}
+                        <i class="bi bi-circle-fill my-col-on"></i>
+                        {{ else }}
+                        <i class="bi bi-circle-fill my-col-off"></i>
+                        {{ end }}
+                    </button>
+                </a></p>
+                {{ end }}
+            </div>
+            {{ end }}
         </div>
     </div>
 
