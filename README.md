@@ -7,6 +7,6 @@
 <br/>
 Dashboard WIP
 
-![screenshot]()
+![screenshot](https://raw.githubusercontent.com/aceberg/miniboard/main/assets/Screenshot%202023-06-18%20at%2013-33-20%20MiniBoard.png)
 
 <a href="https://www.flaticon.com/free-icons/skateboard" title="skateboard icons">Skateboard icons created by Freepik - Flaticon</a>
