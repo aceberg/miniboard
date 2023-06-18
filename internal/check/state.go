@@ -15,7 +15,7 @@ func State(host models.Host) bool {
 		host.Port = "80"
 	}
 
-	timeout := 3 * time.Second
+	timeout := 1 * time.Second
 	target := host.Addr + ":" + host.Port
 
 	conn, err := net.DialTimeout("tcp", target, timeout)

@@ -19,6 +19,7 @@ type Host struct {
 	Name  string `yaml:"name"`
 	Addr  string `yaml:"addr"`
 	Port  string `yaml:"port"`
+	URL   string `yaml:"url"`
 	Icon  string `yaml:"icon"`
 	State bool
 }
@@ -26,6 +27,7 @@ type Host struct {
 // Panel - board element
 type Panel struct {
 	Name  string `yaml:"name"`
+	Scan  bool   `yaml:"scan"`
 	Hosts []Host `yaml:"hosts"`
 }
 

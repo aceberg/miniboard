@@ -13,8 +13,8 @@ func Get(path string) models.Conf {
 
 	viper.SetDefault("HOST", "0.0.0.0")
 	viper.SetDefault("PORT", "8849")
-	viper.SetDefault("THEME", "minty")
-	viper.SetDefault("COLOR", "light")
+	viper.SetDefault("THEME", "cyborg")
+	viper.SetDefault("COLOR", "dark")
 	viper.SetDefault("COLORON", "#89ff89")
 	viper.SetDefault("COLOROFF", "#ff3232")
 	viper.SetDefault("BTNWIDTH", "180px")

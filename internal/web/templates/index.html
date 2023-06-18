@@ -6,15 +6,23 @@
         <div class="row text-center">
             {{ range .Links.Panels }}
             <div class="col-md-auto">
-                <a href="/edit?panel={{ .Name }}"><h5>{{ .Name }}</h5></a>
+                <!-- <a href="/edit?panel={{ .Name }}"><h5>{{ .Name }}</h5></a> -->
+                <h5>{{ .Name }}</h5>{{ $scan:= .Scan }}
                 {{ range .Hosts }}
-                <p><a href="http://{{ .Addr }}:{{ .Port }}" target="_blank">
+                <p>{{ if .URL }}
+                <a href="{{ .URL }}" target="_blank">
+                {{ else }}
+                <a href="http://{{ .Addr }}:{{ .Port }}" target="_blank">
+                {{ end }}
                     <button class="btn btn-primary my-btn-width" type="button">
                         {{ if .Icon }}
                         <img src="{{ .Icon }}" style="height:1.3em;"/>&nbsp;
                         {{ end }}
                         {{ .Name }}
                     </button>
+                </a>
+                {{ if $scan }}
+                <a href="http://{{ .Addr }}:{{ .Port }}" target="_blank">
                     <button class="btn btn-primary">
                         {{ if .State }}
                         <i class="bi bi-circle-fill my-col-on"></i>
@@ -22,7 +30,9 @@
                         <i class="bi bi-circle-fill my-col-off"></i>
                         {{ end }}
                     </button>
-                </a></p>
+                </a>
+                {{ end }}
+                </p>
                 {{ end }}
             </div>
             {{ end }}

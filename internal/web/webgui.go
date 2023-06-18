@@ -19,7 +19,8 @@ func Gui(confPath, yamlPath string) {
 	log.Println("INFO: starting web gui with config", AppConfig.ConfPath)
 
 	AllLinks = yaml.Read(AppConfig.YamlPath)
-	log.Println("AllLinks: ", AllLinks)
+	// log.Println("ALL:", AllLinks)
+	go scanPorts(60) // scan.go
 
 	address := AppConfig.Host + ":" + AppConfig.Port
 
@@ -29,6 +30,7 @@ func Gui(confPath, yamlPath string) {
 
 	http.HandleFunc("/", indexHandler)                  // index.go
 	http.HandleFunc("/edit/", editHandler)              // edit.go
+	http.HandleFunc("/edit_save/", saveEditHandler)     // edit.go
 	http.HandleFunc("/config/", configHandler)          // config.go
 	http.HandleFunc("/config_save/", saveConfigHandler) // config.go
 	err := http.ListenAndServe(address, nil)
