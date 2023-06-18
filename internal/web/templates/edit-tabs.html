@@ -1,0 +1,25 @@
+{{ define "edit-tabs" }}
+
+<body>
+    <div class="container">
+        <br>
+        <div class="row">
+            <table class="table table-striped">
+                <thead>
+                    <th style="width: 20%;">Key</th>
+                    <th style="width: 20%;">Name</th>
+                    <th>Panels</th>
+                </thead>
+                {{ range $key, $value := .Links.Tabs }}
+                <tr>
+                    <td><input name="key" type="text" class="form-control" value="{{ $key }}"></td>
+                    <td><input name="name" type="text" class="form-control" value="{{ .Name }}"></td>
+                    <td><textarea name="panels" rows="2" class="form-control">{{ range .Panels }}{{ . }} {{ end }}</textarea></td>
+                </tr>
+                {{ end }}
+            </table>
+        </div>
+    </div>
+
+{{ template "footer" }}
+{{ end }}

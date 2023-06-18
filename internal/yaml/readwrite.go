@@ -32,5 +32,5 @@ func Write(path string, allLinks models.Links) {
 	err = os.WriteFile(path, yamlData, 0644)
 	check.IfError(err)
 
-	log.Println("INFO: writing new Links file to", path, "\n", string(yamlData))
+	log.Println("INFO: writing new Links file to", path)
 }

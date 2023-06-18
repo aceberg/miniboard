@@ -29,10 +29,9 @@ func Gui(confPath, yamlPath string) {
 	log.Println("=================================== ")
 
 	http.HandleFunc("/", indexHandler)                  // index.go
-	http.HandleFunc("/edit/", editHandler)              // edit.go
-	http.HandleFunc("/edit_save/", saveEditHandler)     // edit.go
 	http.HandleFunc("/config/", configHandler)          // config.go
 	http.HandleFunc("/config_save/", saveConfigHandler) // config.go
+	http.HandleFunc("/tabs/", tabHandler)               // tabs.go
 	err := http.ListenAndServe(address, nil)
 	check.IfError(err)
 }

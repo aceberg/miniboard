@@ -16,7 +16,21 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		AllLinks = yaml.Read(AppConfig.YamlPath)
 	}
 
-	guiData.Links = AllLinks
+	tab := r.URL.Query().Get("tab")
+	if tab == "" {
+		for key := range AllLinks.Tabs {
+			tab = key
+			break
+		}
+	}
+
+	guiData.CurrentTab = AllLinks.Tabs[tab].Name
+	guiData.Links.Tabs = AllLinks.Tabs
+	guiData.Links.Panels = make(map[string]models.Panel)
+
+	for _, name := range AllLinks.Tabs[tab].Panels {
+		guiData.Links.Panels[name] = AllLinks.Panels[name]
+	}
 
 	execTemplate(w, "index", guiData)
 }

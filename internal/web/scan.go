@@ -10,13 +10,10 @@ import (
 
 func scanPorts(timeout int) {
 	for {
-		newPanels := []models.Panel{}
+		for name, panel := range AllLinks.Panels {
 
-		for _, panel := range AllLinks.Panels {
-
-			newPanels = append(newPanels, scanPanel(panel))
+			AllLinks.Panels[name] = scanPanel(panel)
 		}
-		AllLinks.Panels = newPanels
 
 		time.Sleep(time.Duration(timeout) * time.Second)
 	}

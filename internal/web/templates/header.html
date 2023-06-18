@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="{{ .Config.Color }}">
 <head>
-    <title>MiniBoard</title>
+    <title>MiniBoard - {{ .CurrentTab }}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--Favicon-->
@@ -29,19 +29,30 @@
 <body>
     <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
         <ul class="navbar-nav">
+            &nbsp;&nbsp;
             <li class="nav-item">
                 <a class="nav-link active" href="/">
                     <img src="data:image/png;base64, {{ .Config.Icon }}" width="30"/>
                 </a>
             </li>
+            &nbsp;&nbsp;
             <li class="nav-item dropdown">
-                <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Menu</a>
+                <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                    <i class="bi bi-list"></i>
+                </a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/?reload=yes">Reload</a></li>
                     <li><a class="dropdown-item" href="/config/">Config</a></li>
+                    <li><a class="dropdown-item" href="/edit_panels/">Edit panels</a></li>
+                    <li><a class="dropdown-item" href="/tabs/">Edit tabs</a></li>
+                    <li><a class="dropdown-item" href="/?reload=yes">Reload</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" target="_blank" href="https://github.com/aceberg/miniboard">About</a></li>
                 </ul>
+                {{ range $key, $value := .Links.Tabs }}
+                <li class="nav-item">
+                    <a class="nav-link active" href="/?tab={{ $key }}">{{ .Name }}</a>
+                </li>
+                {{ end }}
             </li>
         </ul>
     </nav>

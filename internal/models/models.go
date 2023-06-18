@@ -24,21 +24,29 @@ type Host struct {
 	State bool
 }
 
-// Panel - board element
+// Panel - tab element
 type Panel struct {
 	Name  string `yaml:"name"`
 	Scan  bool   `yaml:"scan"`
 	Hosts []Host `yaml:"hosts"`
 }
 
+// Tab - board element
+type Tab struct {
+	Name   string   `yaml:"name"`
+	Panels []string `yaml:"panels"`
+}
+
 // Links - all links
 type Links struct {
-	Panels []Panel `yaml:"panels"`
+	Tabs   map[string]Tab   `yaml:"tabs"`
+	Panels map[string]Panel `yaml:"panels"`
 }
 
 // GuiData - web gui data
 type GuiData struct {
-	Config Conf
-	Themes []string
-	Links  Links
+	Config     Conf
+	Themes     []string
+	Links      Links
+	CurrentTab string
 }
