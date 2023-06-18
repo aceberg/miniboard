@@ -48,6 +48,15 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>Default Tab</td>
+                    <td><select name="deftab" class="form-select">
+                        <option selected>{{ .Config.DefTab }}</option>
+                        {{ range $key, $value := .Links.Tabs }}
+                            <option value="{{ $key }}">{{ .Name }} ({{ $key }})</option>
+                        {{ end }}
+                    </select></td>
+                </tr>
+                <tr>
                     <td><button type="submit" class="btn btn-primary">Save</button></td>
                     <td></td>
                 </tr>

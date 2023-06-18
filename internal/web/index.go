@@ -18,9 +18,14 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 	tab := r.URL.Query().Get("tab")
 	if tab == "" {
-		for key := range AllLinks.Tabs {
-			tab = key
-			break
+		_, exists := AllLinks.Tabs[AppConfig.DefTab]
+		if exists {
+			tab = AppConfig.DefTab
+		} else {
+			for key := range AllLinks.Tabs {
+				tab = key
+				break
+			}
 		}
 	}
 

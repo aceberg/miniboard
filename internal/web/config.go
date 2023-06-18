@@ -28,6 +28,7 @@ func saveConfigHandler(w http.ResponseWriter, r *http.Request) {
 	AppConfig.ColorOn = r.FormValue("coloron")
 	AppConfig.ColorOff = r.FormValue("coloroff")
 	AppConfig.BtnWidth = r.FormValue("btnwidth")
+	AppConfig.DefTab = r.FormValue("deftab")
 
 	conf.Write(AppConfig)
 

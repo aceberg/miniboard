@@ -8,7 +8,7 @@ import (
 	"github.com/aceberg/miniboard/internal/yaml"
 )
 
-func tabHandler(w http.ResponseWriter, r *http.Request) {
+func tabsHandler(w http.ResponseWriter, r *http.Request) {
 	var guiData models.GuiData
 
 	key := r.FormValue("key")

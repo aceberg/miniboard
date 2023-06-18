@@ -12,16 +12,18 @@ type Conf struct {
 	ColorOn  string
 	ColorOff string
 	BtnWidth string
+	DefTab   string
 }
 
 // Host - panel element
 type Host struct {
+	ID    string `yaml:"id"`
 	Name  string `yaml:"name"`
 	Addr  string `yaml:"addr"`
 	Port  string `yaml:"port"`
 	URL   string `yaml:"url"`
 	Icon  string `yaml:"icon"`
-	State bool
+	State bool   `yaml:"state"`
 }
 
 // Panel - tab element
