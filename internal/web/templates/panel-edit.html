@@ -1,0 +1,78 @@
+{{ define "panel-edit" }}
+
+<body>
+    <div class="container">
+        <br>
+        <div class="row">
+            <div class="col">
+                {{ range $key, $value := .Links.Panels }}
+                <div class="row">
+                    <div class="col">
+                        <h4>Edit panel {{ .Name }}</h4>
+                    </div>
+                    <div class="col"></div>
+                    <div class="col">
+                        <a href="/panel_edit/?del={{ $key }}">
+                            <button type="submit" class="btn btn-outline-danger">Delete panel</button>
+                        </a>
+                    </div>
+                </div>
+                <br>
+                <table class="table table-striped">
+                    <thead>
+                        <th style="width: 1em;">Del</th>
+                        <th style="width: 3em;">ID</th>
+                        <th style="width: 1em;">Up</th>
+                        <th style="width: 12em;">Name</th>
+                        <th style="width: 12em;">IP Address</th>
+                        <th style="width: 6em;">Port</th>
+                        <th>URL</th>
+                        <th>Icon</th>
+                        <th style="width: 1em;"></th>
+                    </thead>
+                    {{ range $id, $host := .Hosts }}
+                    <tr>
+                        <td><a href="/host/?panel={{ $key }}&del={{ $id }}">
+                            <button type="submit" class="btn btn-outline-danger"><i class="bi bi-x-lg"></i></button>
+                        </a></td>
+                        <td>{{ $id }}</td>
+                        <td>{{ if eq $id 0 }}
+                            <button type="submit" class="btn btn-outline-warning" disabled><i class="bi bi-arrow-up"></i></button>
+                            {{ else }}
+                            <a href="/host/?panel={{ $key }}&up={{ $id }}">
+                                <button type="submit" class="btn btn-outline-warning"><i class="bi bi-arrow-up"></i></button>
+                            </a>
+                            {{ end }}
+                        </td>
+                    <form action="/host/" method="post">
+                        <input name="id" type="hidden" value="{{ $id }}">
+                        <input name="panel" type="hidden" value="{{ $key }}">
+                        <td><input name="name" type="text" class="form-control" value="{{ .Name }}"></td>
+                        <td><input name="addr" type="text" class="form-control" value="{{ .Addr }}"></td>
+                        <td><input name="port" type="text" class="form-control" value="{{ .Port }}"></td>
+                        <td><input name="url" type="text" class="form-control" value="{{ .URL }}"></td>
+                        <td><input name="icon" type="text" class="form-control" value="{{ .Icon }}"></td>
+                        <td><button type="submit" class="btn btn-outline-success"><i class="bi bi-check2"></i></button></td>
+                    </form>
+                    </tr>
+                    {{ end }}
+                    <tr>
+                        <td colspan="3">New:</td>
+                    <form action="/host/" method="post">
+                        <input name="panel" type="hidden" value="{{ $key }}">
+                        <td><input name="name" type="text" class="form-control"></td>
+                        <td><input name="addr" type="text" class="form-control"></td>
+                        <td><input name="port" type="text" class="form-control"></td>
+                        <td><input name="url" type="text" class="form-control"></td>
+                        <td><input name="icon" type="text" class="form-control"></td>
+                        <td><button type="submit" class="btn btn-outline-success"><i class="bi bi-check2"></i></button></td>
+                    </form>
+                    </tr>
+                </table>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+
+{{ template "footer" }}
+{{ end }}

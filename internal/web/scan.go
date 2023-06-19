@@ -28,9 +28,10 @@ func scanPanel(panel models.Panel) models.Panel {
 	onePanel.Name = panel.Name
 	onePanel.Scan = panel.Scan
 
-	for _, host := range panel.Hosts {
+	onePanel.Hosts = make(map[int]models.Host)
+	for key, host := range panel.Hosts {
 		host.State = check.State(host)
-		onePanel.Hosts = append(onePanel.Hosts, host)
+		onePanel.Hosts[key] = host
 	}
 
 	return onePanel

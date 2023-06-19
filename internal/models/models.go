@@ -17,7 +17,7 @@ type Conf struct {
 
 // Host - panel element
 type Host struct {
-	ID    string `yaml:"id"`
+	// ID    string `yaml:"id"`
 	Name  string `yaml:"name"`
 	Addr  string `yaml:"addr"`
 	Port  string `yaml:"port"`
@@ -28,9 +28,10 @@ type Host struct {
 
 // Panel - tab element
 type Panel struct {
-	Name  string `yaml:"name"`
-	Scan  bool   `yaml:"scan"`
-	Hosts []Host `yaml:"hosts"`
+	Name string `yaml:"name"`
+	Scan bool   `yaml:"scan"`
+	// Hosts []Host `yaml:"hosts"`
+	Hosts map[int]Host `yaml:"hosts"`
 }
 
 // Tab - board element

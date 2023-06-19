@@ -31,7 +31,9 @@ func Gui(confPath, yamlPath string) {
 	http.HandleFunc("/", indexHandler)                  // index.go
 	http.HandleFunc("/config/", configHandler)          // config.go
 	http.HandleFunc("/config_save/", saveConfigHandler) // config.go
+	http.HandleFunc("/host/", hostHandler)              // host.go
 	http.HandleFunc("/panels/", panelsHandler)          // panels.go
+	http.HandleFunc("/panel_edit/", panelEditHandler)   // panel-edit.go
 	http.HandleFunc("/tabs/", tabsHandler)              // tabs.go
 	err := http.ListenAndServe(address, nil)
 	check.IfError(err)

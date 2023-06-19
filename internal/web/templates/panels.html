@@ -4,35 +4,66 @@
     <div class="container">
         <br>
         <div class="row">
-        {{ range .Links.Panels }}
-            <h5>Edit {{ .Name }}</h5>
+            <div class="col">
             <table class="table table-striped">
+                <thead>
+                    <th style="width: 1em;"></th>
+                    <th>Key</th>
+                    <th>Name</th>
+                    <th>Scan</th>
+                    <th style="width: 1em;"></th>
+                </thead>
+                {{ range $key, $value := .Links.Panels }}
                 <tr>
-                    <th style="width: 20%;">Name</th>
-                    <th style="width: 20%;">Address</th>
-                    <th style="width: 10%;">Port</th>
-                    <th style="width: 100%;">Icon URL</th>
-                    <th></th>
-                </tr>
-            <form action="/edit_save/" method="post">
-                <input name="panel" type="hidden" value="{{ .Name }}">
-                {{ range .Hosts }}
-                <tr>
-                    <td><input name="name" type="text" class="form-control" value="{{ .Name }}"></td>
-                    <td><input name="addr" type="text" class="form-control" value="{{ .Addr }}"></td>
-                    <td><input name="port" type="text" class="form-control" value="{{ .Port }}"></td>
-                    <td><input name="icon" type="text" class="form-control" value="{{ .Icon }}"></td>
-                    <td>
-                        <button type="submit" class="btn btn-primary"><i class="bi bi-check2"></i></button>
+                    <td><a href="/panel_edit/?edit={{ $key }}">
+                        <button type="submit" class="btn btn-outline-warning">
+                            <i class="bi bi-pencil"></i>
+                        </button></a>
                     </td>
+                    <form action="/panels/" method="post">
+                    <td>
+                        <input name="oldkey" type="hidden" class="form-control" value="{{ $key }}">
+                        <input name="key" type="text" class="form-control" value="{{ $key }}">
+                    </td>
+                    <td>
+                        <input name="name" type="text" class="form-control" value="{{ .Name }}">
+                    </td>
+                    <td>
+                        <div class="form-check">
+                            {{ if .Scan }}
+                            <input class="form-check-input" type="checkbox" name="scan" checked>
+                            {{ else }}
+                            <input class="form-check-input" type="checkbox" name="scan">
+                            {{ end }}
+                        </div>
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-outline-success"><i class="bi bi-check2"></i></button>
+                    </td>
+                    </form>
                 </tr>
                 {{ end }}
-            </form>
+                <tr>
+                    <td>New:</td>
+                    <form action="/panels/" method="post">
+                        <td>
+                            <input name="key" type="text" class="form-control" placeholder="Unique string">
+                        </td>
+                        <td>
+                            <input name="name" type="text" class="form-control" placeholder="Unique string">
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="scan">
+                            </div>
+                        </td>
+                        <td>
+                            <button type="submit" class="btn btn-outline-success"><i class="bi bi-check2"></i></button>
+                        </td>
+                    </form>
+                </tr>
             </table>
-            <a href="/edit?panel={{ .Name }}&new=host">
-                <button type="submit" class="btn btn-primary">New</button>
-            </a>
-        {{ end }}
+            </div>
         </div>
     </div>
 

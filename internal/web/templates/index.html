@@ -4,10 +4,11 @@
     <div class="container">
         <br>
         <div class="row text-center">
-            {{ range .Links.Panels }}
+            {{ range $key, $value := .Links.Panels }}
             <div class="col-md-auto">
                 <!-- <a href="/edit?panel={{ .Name }}"><h5>{{ .Name }}</h5></a> -->
-                <h5>{{ .Name }}</h5>{{ $scan:= .Scan }}
+                <a href="/panel_edit/?edit={{ $key }}"><h5>{{ .Name }}</h5></a>
+                {{ $scan:= .Scan }}
                 {{ range .Hosts }}
                 <p>{{ if .URL }}
                 <a href="{{ .URL }}" target="_blank">
