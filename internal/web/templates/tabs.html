@@ -4,64 +4,56 @@
     <div class="container">
         <br>
         <div class="row">
-        <div class="col">
-            <h4>New tab</h4>
-            <table class="table">
-                <thead>
-                    <th></th>
-                    <th>Input values</th>
-                </thead>
-                <form action="/tabs/" method="post">
-                    <tr>
-                        <td><b>Key</b></td>
-                        <td>
-                            <input name="key" type="text" class="form-control" placeholder="Unique string">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><b>Name</b></td>
-                        <td>
-                            <input name="name" type="text" class="form-control" placeholder="Unique string">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><b>Panels</b></td>
-                        <td>
-                            {{ range $key, $value := .Links.Panels }}
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="{{ $key }}" name="panels">{{ .Name }}
-                            </div>
-                            {{ end }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><button type="submit" class="btn btn-primary">Save</button></td>
-                    </tr>
-                </form>
-            </table>
-        </div>
-        <div class="col">
-            <h4>Remove tab</h4>
             <table class="table table-striped">
                 <thead>
-                    <th>Key</th>
-                    <th>Name</th>
-                    <th>Del</th>
+                    <th style="width: 1em;">Del</th>
+                    <th style="width: 3em;">ID</th>
+                    <th style="width: 1em;">Up</th>
+                    <th style="width: 12em;">Name</th>
+                    <th>Panels</th>
+                    <th style="width: 1em;"></th>
                 </thead>
-                {{ range $key, $value := .Links.Tabs }}
+                {{ range $id, $tab := .Links.Tabs }}
                 <tr>
-                    <td>{{ $key }}</td>
-                    <td>{{ .Name }}</td>
-                    <td>
-                        <a href="/tabs/?remove={{ $key }}">
-                            <i class="bi bi-x-square"></i>
+                    <td><a href="/tabs/?del={{ $id }}">
+                        <button type="submit" class="btn btn-outline-danger"><i class="bi bi-x-lg"></i></button>
+                    </a></td>
+                    <td>{{ $id }}</td>
+                    <td>{{ if eq $id 0 }}
+                        <button type="submit" class="btn btn-outline-warning" disabled><i class="bi bi-arrow-up"></i></button>
+                        {{ else }}
+                        <a href="/tabs/?up={{ $id }}">
+                            <button type="submit" class="btn btn-outline-warning"><i class="bi bi-arrow-up"></i></button>
                         </a>
+                        {{ end }}
                     </td>
+                <form action="/tabs/" method="post">
+                    <input name="id" type="hidden" value="{{ $id }}">
+                    <td><input name="name" type="text" class="form-control" value="{{ .Name }}"></td>
+                    <td>
+                    {{ range $key, $val := $.Links.Panels }}
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="{{ $key }}" name="panels">{{ .Name }} ({{ $key }})
+                        </div>
+                    {{ end }}
+                    </td>
+                    <td><button type="submit" class="btn btn-outline-success"><i class="bi bi-check2"></i></button></td>
+                </form>
                 </tr>
                 {{ end }}
+                <tr>
+                <form action="/tabs/" method="post">
+                    <td colspan="3">New:</td>
+                    <td><input name="name" type="text" class="form-control"></td>
+                    <td>{{ range $key, $val := .Links.Panels }}
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="{{ $key }}" name="panels">{{ .Name }} ({{ $key }})
+                        </div>
+                        {{ end }}</td>
+                    <td><button type="submit" class="btn btn-outline-success"><i class="bi bi-check2"></i></button></td>
+                    </form>
+                </tr>
             </table>
-        </div>
         </div>
     </div>
 

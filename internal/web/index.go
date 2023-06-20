@@ -2,6 +2,7 @@ package web
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/aceberg/miniboard/internal/models"
 	"github.com/aceberg/miniboard/internal/yaml"
@@ -16,17 +17,12 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		AllLinks = yaml.Read(AppConfig.YamlPath)
 	}
 
-	tab := r.URL.Query().Get("tab")
-	if tab == "" {
-		_, exists := AllLinks.Tabs[AppConfig.DefTab]
-		if exists {
-			tab = AppConfig.DefTab
-		} else {
-			for key := range AllLinks.Tabs {
-				tab = key
-				break
-			}
-		}
+	tabStr := r.URL.Query().Get("tab")
+	var tab int
+	if tabStr == "" {
+		tab = 0
+	} else {
+		tab, _ = strconv.Atoi(tabStr)
 	}
 
 	guiData.CurrentTab = AllLinks.Tabs[tab].Name

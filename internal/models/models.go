@@ -12,7 +12,7 @@ type Conf struct {
 	ColorOn  string
 	ColorOff string
 	BtnWidth string
-	DefTab   string
+	DefTab   int
 }
 
 // Host - panel element
@@ -42,7 +42,7 @@ type Tab struct {
 
 // Links - all links
 type Links struct {
-	Tabs   map[string]Tab   `yaml:"tabs"`
+	Tabs   map[int]Tab      `yaml:"tabs"`
 	Panels map[string]Panel `yaml:"panels"`
 }
 

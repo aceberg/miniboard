@@ -34,7 +34,7 @@ func Get(path string) models.Conf {
 	config.ColorOn, _ = viper.Get("COLORON").(string)
 	config.ColorOff, _ = viper.Get("COLOROFF").(string)
 	config.BtnWidth, _ = viper.Get("BTNWIDTH").(string)
-	config.DefTab, _ = viper.Get("DEFTAB").(string)
+	config.DefTab, _ = viper.Get("DEFTAB").(int)
 
 	return config
 }
