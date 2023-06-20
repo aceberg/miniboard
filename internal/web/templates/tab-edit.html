@@ -1,0 +1,68 @@
+{{ define "tab-edit" }}
+
+<body>
+    <div class="container">
+        <br>
+        {{ range $key, $value := .Links.Tabs }}
+        {{ if eq $key $.TabEdit }}
+        <div class="row">
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <h4>Edit tab {{ .Name }}</h4>
+                </div>
+                <div class="col"></div>
+                <div class="col">
+                    <a href="/tab_edit/?del={{ $key }}">
+                        <button type="submit" class="btn btn-outline-danger">Delete tab</button>
+                    </a>
+                </div>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <th style="width: 1em;">Del</th>
+                    <th style="width: 3em;">ID</th>
+                    <th style="width: 1em;">Up</th>
+                    <th>Panels</th>
+                </thead>
+            {{ range $id, $panel := .Panels }}
+            <tr>
+                <td><a href="/tab_edit/?panel={{ $key }}&del={{ $id }}">
+                    <button type="submit" class="btn btn-outline-danger"><i class="bi bi-x-lg"></i></button>
+                </a></td>
+                <td>{{ $id }}</td>
+                <td>{{ if eq $id 0 }}
+                    <button type="submit" class="btn btn-outline-warning" disabled><i class="bi bi-arrow-up"></i></button>
+                    {{ else }}
+                    <a href="/tab_edit/?panel={{ $key }}&up={{ $id }}">
+                        <button type="submit" class="btn btn-outline-warning"><i class="bi bi-arrow-up"></i></button>
+                    </a>
+                    {{ end }}
+                </td>
+                <td><a href="/panel_edit/?edit={{ . }}">{{ . }}</a>&nbsp;</td>
+            </tr>
+            {{ end }}
+            </table>
+        </div>
+        <div class="col">
+            <div class="row">
+                <h4>Add panels to tab</h4>
+            </div>
+            <div class="row">
+                <form action="/tab_edit/" method="post">
+                    <select name="panels" class="form-select" multiple>
+                        {{ range $id, $panel := $.Links.Panels }}
+                        <option value="{{ $id }}">{{ $id }}</option>
+                        {{ end }}
+                    </select>
+                    <button type="submit" class="btn btn-outline-success">Add</button>
+                </form>
+            </div>
+        </div>
+        </div>
+        {{ end }}
+        {{ end }}
+    </div>
+
+{{ template "footer" }}
+{{ end }}

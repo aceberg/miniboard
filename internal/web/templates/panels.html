@@ -8,7 +8,6 @@
             <table class="table table-striped">
                 <thead>
                     <th style="width: 1em;"></th>
-                    <th>Key</th>
                     <th>Name</th>
                     <th>Scan</th>
                     <th style="width: 1em;"></th>
@@ -24,9 +23,6 @@
                     <td>
                         <input name="oldkey" type="hidden" class="form-control" value="{{ $key }}">
                         <input name="key" type="text" class="form-control" value="{{ $key }}">
-                    </td>
-                    <td>
-                        <input name="name" type="text" class="form-control" value="{{ .Name }}">
                     </td>
                     <td>
                         <div class="form-check">
@@ -48,9 +44,6 @@
                     <form action="/panels/" method="post">
                         <td>
                             <input name="key" type="text" class="form-control" placeholder="Unique string">
-                        </td>
-                        <td>
-                            <input name="name" type="text" class="form-control" placeholder="Unique string">
                         </td>
                         <td>
                             <div class="form-check">

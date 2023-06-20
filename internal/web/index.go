@@ -27,10 +27,10 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 	guiData.CurrentTab = AllLinks.Tabs[tab].Name
 	guiData.Links.Tabs = AllLinks.Tabs
-	guiData.Links.Panels = make(map[string]models.Panel)
 
-	for _, name := range AllLinks.Tabs[tab].Panels {
-		guiData.Links.Panels[name] = AllLinks.Panels[name]
+	guiData.Panels = make(map[int]models.Panel)
+	for i, name := range AllLinks.Tabs[tab].Panels {
+		guiData.Panels[i] = AllLinks.Panels[name]
 	}
 
 	execTemplate(w, "index", guiData)

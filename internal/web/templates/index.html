@@ -4,10 +4,9 @@
     <div class="container">
         <br>
         <div class="row text-center">
-            {{ range $key, $value := .Links.Panels }}
+            {{ range .Panels }}
             <div class="col-md-auto">
-                <!-- <a href="/edit?panel={{ .Name }}"><h5>{{ .Name }}</h5></a> -->
-                <a href="/panel_edit/?edit={{ $key }}"><h5>{{ .Name }}</h5></a>
+                <a href="/panel_edit/?edit={{ .Name }}"><h5>{{ .Name }}</h5></a>
                 {{ $scan:= .Scan }}
                 {{ range .Hosts }}
                 <p>{{ if .URL }}

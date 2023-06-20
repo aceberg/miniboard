@@ -13,16 +13,15 @@ func panelsHandler(w http.ResponseWriter, r *http.Request) {
 
 	oldkey := r.FormValue("oldkey")
 	key := r.FormValue("key")
-	name := r.FormValue("name")
 	scan := r.FormValue("scan")
 
-	if key != "" && name != "" {
+	if key != "" {
 		// log.Println("PANEL:", oldkey, key, name, scan)
 
 		_, exists := AllLinks.Panels[key]
 
 		panel := models.Panel{}
-		panel.Name = name
+		panel.Name = key
 		if scan == "on" {
 			panel.Scan = true
 		}

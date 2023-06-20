@@ -8,7 +8,7 @@
                 {{ range $key, $value := .Links.Panels }}
                 <div class="row">
                     <div class="col">
-                        <h4>Edit panel {{ .Name }}</h4>
+                        <h4>Edit panel {{ $key }}</h4>
                     </div>
                     <div class="col"></div>
                     <div class="col">

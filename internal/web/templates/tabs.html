@@ -4,9 +4,11 @@
     <div class="container">
         <br>
         <div class="row">
+        <div class="col">
+            <h4>Edit Tabs</h4>
             <table class="table table-striped">
                 <thead>
-                    <th style="width: 1em;">Del</th>
+                    <th style="width: 1em;">Edit</th>
                     <th style="width: 3em;">ID</th>
                     <th style="width: 1em;">Up</th>
                     <th style="width: 12em;">Name</th>
@@ -15,8 +17,8 @@
                 </thead>
                 {{ range $id, $tab := .Links.Tabs }}
                 <tr>
-                    <td><a href="/tabs/?del={{ $id }}">
-                        <button type="submit" class="btn btn-outline-danger"><i class="bi bi-x-lg"></i></button>
+                    <td><a href="/tab_edit/?id={{ $id }}">
+                        <button type="submit" class="btn btn-outline-warning"><i class="bi bi-pencil"></i></button>
                     </a></td>
                     <td>{{ $id }}</td>
                     <td>{{ if eq $id 0 }}
@@ -29,31 +31,40 @@
                     </td>
                 <form action="/tabs/" method="post">
                     <input name="id" type="hidden" value="{{ $id }}">
+                    <input name="panels" type="hidden" value="{{ .Panels }}">
                     <td><input name="name" type="text" class="form-control" value="{{ .Name }}"></td>
-                    <td>
-                    {{ range $key, $val := $.Links.Panels }}
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="{{ $key }}" name="panels">{{ .Name }} ({{ $key }})
-                        </div>
-                    {{ end }}
-                    </td>
+                    <td>{{ range .Panels }}
+                        <a href="/panel_edit/?edit={{ . }}">{{ . }}</a>&nbsp;
+                        {{ end }}</td>
                     <td><button type="submit" class="btn btn-outline-success"><i class="bi bi-check2"></i></button></td>
                 </form>
                 </tr>
                 {{ end }}
+            </table>
+        </div>
+        <div class="col">
+            <h4>New Tab</h4>
+            <table class="table">
+            <form action="/tabs/" method="post">
                 <tr>
-                <form action="/tabs/" method="post">
-                    <td colspan="3">New:</td>
+                    <td>Name</td>
                     <td><input name="name" type="text" class="form-control"></td>
+                </tr>
+                <tr>
+                    <td>Panels</td>
                     <td>{{ range $key, $val := .Links.Panels }}
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="{{ $key }}" name="panels">{{ .Name }} ({{ $key }})
+                            <input class="form-check-input" type="checkbox" value="{{ $key }}" name="panels">{{ $key }}
                         </div>
-                        {{ end }}</td>
-                    <td><button type="submit" class="btn btn-outline-success"><i class="bi bi-check2"></i></button></td>
-                    </form>
+                    {{ end }}</td>
                 </tr>
+                <tr>
+                    <td></td>
+                    <td><button type="submit" class="btn btn-outline-success">Save</button></td>
+                </tr>
+            </form>
             </table>
+        </div>
         </div>
     </div>
 

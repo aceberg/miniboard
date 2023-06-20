@@ -17,7 +17,6 @@ type Conf struct {
 
 // Host - panel element
 type Host struct {
-	// ID    string `yaml:"id"`
 	Name  string `yaml:"name"`
 	Addr  string `yaml:"addr"`
 	Port  string `yaml:"port"`
@@ -28,16 +27,15 @@ type Host struct {
 
 // Panel - tab element
 type Panel struct {
-	Name string `yaml:"name"`
-	Scan bool   `yaml:"scan"`
-	// Hosts []Host `yaml:"hosts"`
+	Name  string       `yaml:"name"`
+	Scan  bool         `yaml:"scan"`
 	Hosts map[int]Host `yaml:"hosts"`
 }
 
 // Tab - board element
 type Tab struct {
-	Name   string   `yaml:"name"`
-	Panels []string `yaml:"panels"`
+	Name   string         `yaml:"name"`
+	Panels map[int]string `yaml:"panels"`
 }
 
 // Links - all links
@@ -51,5 +49,7 @@ type GuiData struct {
 	Config     Conf
 	Themes     []string
 	Links      Links
+	Panels     map[int]Panel
 	CurrentTab string
+	TabEdit    int
 }
