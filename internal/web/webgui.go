@@ -20,6 +20,7 @@ func Gui(confPath, yamlPath string) {
 
 	AllLinks = yaml.Read(AppConfig.YamlPath)
 	// log.Println("ALL:", AllLinks)
+	assignAllIDs()   // assign-IDs.go
 	go scanPorts(60) // scan.go
 
 	address := AppConfig.Host + ":" + AppConfig.Port

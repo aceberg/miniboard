@@ -17,7 +17,7 @@
                 </thead>
                 {{ range $id, $tab := .Links.Tabs }}
                 <tr>
-                    <td><a href="/tab_edit/?id={{ $id }}">
+                    <td><a href="/tab_edit/?tab={{ $id }}">
                         <button type="submit" class="btn btn-outline-warning"><i class="bi bi-pencil"></i></button>
                     </a></td>
                     <td>{{ $id }}</td>

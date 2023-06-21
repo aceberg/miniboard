@@ -13,7 +13,7 @@
                 </div>
                 <div class="col"></div>
                 <div class="col">
-                    <a href="/tab_edit/?del={{ $key }}">
+                    <a href="/tab_edit/?tab={{ $key }}&action=deltab">
                         <button type="submit" class="btn btn-outline-danger">Delete tab</button>
                     </a>
                 </div>
@@ -27,14 +27,14 @@
                 </thead>
             {{ range $id, $panel := .Panels }}
             <tr>
-                <td><a href="/tab_edit/?panel={{ $key }}&del={{ $id }}">
+                <td><a href="/tab_edit/?tab={{ $key }}&pan={{ $id }}&action=delpan">
                     <button type="submit" class="btn btn-outline-danger"><i class="bi bi-x-lg"></i></button>
                 </a></td>
                 <td>{{ $id }}</td>
                 <td>{{ if eq $id 0 }}
                     <button type="submit" class="btn btn-outline-warning" disabled><i class="bi bi-arrow-up"></i></button>
                     {{ else }}
-                    <a href="/tab_edit/?panel={{ $key }}&up={{ $id }}">
+                    <a href="/tab_edit/?tab={{ $key }}&pan={{ $id }}&action=up">
                         <button type="submit" class="btn btn-outline-warning"><i class="bi bi-arrow-up"></i></button>
                     </a>
                     {{ end }}
@@ -50,6 +50,8 @@
             </div>
             <div class="row">
                 <form action="/tab_edit/" method="post">
+                    <input name="tab" type="hidden" value="{{ $key }}">
+                    <input name="action" type="hidden" value="addpan">
                     <select name="panels" class="form-select" multiple>
                         {{ range $id, $panel := $.Links.Panels }}
                         <option value="{{ $id }}">{{ $id }}</option>

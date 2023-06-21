@@ -21,7 +21,7 @@ func hostHandler(w http.ResponseWriter, r *http.Request) {
 
 		id, _ := strconv.Atoi(del)
 		delete(AllLinks.Panels[panel].Hosts, id)
-		assignIDs(panel) // assign-ids.go
+		assignHostIDs(panel) // assign-IDs.go
 
 	} else if up != "" && panel != "" {
 		// log.Println("UP:", panel, up)
