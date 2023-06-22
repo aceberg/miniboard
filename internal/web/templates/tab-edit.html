@@ -52,7 +52,7 @@
                 <form action="/tab_edit/" method="post">
                     <input name="tab" type="hidden" value="{{ $key }}">
                     <input name="action" type="hidden" value="addpan">
-                    <select name="panels" class="form-select" multiple>
+                    <select name="panels" class="form-select" multiple size="10em">
                         {{ range $id, $panel := $.Links.Panels }}
                         <option value="{{ $id }}">{{ $id }}</option>
                         {{ end }}

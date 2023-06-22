@@ -52,11 +52,11 @@
                 </tr>
                 <tr>
                     <td>Panels</td>
-                    <td>{{ range $key, $val := .Links.Panels }}
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="{{ $key }}" name="panels">{{ $key }}
-                        </div>
-                    {{ end }}</td>
+                    <td><select name="panels" class="form-select" multiple size="10em">
+                        {{ range $id, $panel := $.Links.Panels }}
+                        <option value="{{ $id }}">{{ $id }}</option>
+                        {{ end }}
+                    </select></td>
                 </tr>
                 <tr>
                     <td></td>

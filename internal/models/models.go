@@ -13,6 +13,7 @@ type Conf struct {
 	ColorOff string
 	BtnWidth string
 	DefTab   int
+	NodePath string
 }
 
 // Host - panel element

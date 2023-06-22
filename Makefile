@@ -7,6 +7,7 @@ mod:
 run:
 	cd cmd/miniboard/ && \
 	go run .
+	# go run . -n "http://192.168.2.3:8850"
 
 fmt:
 	go fmt ./...
