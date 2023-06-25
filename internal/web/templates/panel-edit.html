@@ -60,11 +60,11 @@
                         <td colspan="3">New:</td>
                     <form action="/host/" method="post">
                         <input name="panel" type="hidden" value="{{ $key }}">
-                        <td><input name="name" type="text" class="form-control"></td>
-                        <td><input name="addr" type="text" class="form-control"></td>
-                        <td><input name="port" type="text" class="form-control"></td>
-                        <td><input name="url" type="text" class="form-control"></td>
-                        <td><input name="icon" type="text" class="form-control"></td>
+                        <td><input name="name" type="text" class="form-control" placeholder="Name"></td>
+                        <td><input name="addr" type="text" class="form-control" placeholder="IP or DNS-name"></td>
+                        <td><input name="port" type="text" class="form-control" placeholder="Port"></td>
+                        <td><input name="url" type="text" class="form-control" placeholder="Starts with http(s)://"></td>
+                        <td><input name="icon" type="text" class="form-control" placeholder="Link to icon"></td>
                         <td><button type="submit" class="btn btn-outline-success"><i class="bi bi-check2"></i></button></td>
                     </form>
                     </tr>

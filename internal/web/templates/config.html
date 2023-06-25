@@ -36,25 +36,16 @@
                     <td><input name="btnwidth" type="text" class="form-control" value="{{ .Config.BtnWidth }}"></td>
                 </tr>
                 <tr>
-                    <td>On</td>
+                    <td>On color</td>
                     <td>
                         <input name="coloron" value="{{ .Config.ColorOn }}" type="color" class="form-control form-control-color">
                     </td>
                 </tr>
                 <tr>
-                    <td>Off</td>
+                    <td>Off color</td>
                     <td>
                         <input name="coloroff" value="{{ .Config.ColorOff }}" type="color" class="form-control form-control-color">
                     </td>
-                </tr>
-                <tr>
-                    <td>Default Tab</td>
-                    <td><select name="deftab" class="form-select">
-                        <option selected>{{ .Config.DefTab }}</option>
-                        {{ range $key, $value := .Links.Tabs }}
-                            <option value="{{ $key }}">{{ .Name }} ({{ $key }})</option>
-                        {{ end }}
-                    </select></td>
                 </tr>
                 <tr>
                     <td><button type="submit" class="btn btn-primary">Save</button></td>
@@ -66,8 +57,8 @@
         <div class="col">
             <div class="alert alert-info" role="alert">
                 <p>● After changing <b>Host</b> or <b>Port</b> you need to restart the app</p>
-                <p>● <b>URLs</b> should be space separated</p>
-                <p>● <b>Other</b> - search for other keywords in .git/config (space separated)</p>
+                <p>● <b>Button Width</b> can be set in <b>px</b> or <b>em</b> to adjust buttons to theme. Example: 180px</p>
+                <p>● <b>On color</b> and <b>Off color</b> - online and offline host colors</p>
             </div>
         </div>
     </div>

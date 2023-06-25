@@ -12,7 +12,6 @@ type Conf struct {
 	ColorOn  string
 	ColorOff string
 	BtnWidth string
-	DefTab   int
 	NodePath string
 }
 

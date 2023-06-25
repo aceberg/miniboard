@@ -73,5 +73,9 @@ func assignAllIDs() {
 		assignHostIDs(panelID)
 	}
 
+	if AllLinks.Panels == nil {
+		AllLinks.Panels = make(map[string]models.Panel)
+	}
+
 	yaml.Write(AppConfig.YamlPath, AllLinks)
 }

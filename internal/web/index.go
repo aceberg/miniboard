@@ -15,6 +15,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	reload := r.URL.Query().Get("reload")
 	if reload == "yes" {
 		AllLinks = yaml.Read(AppConfig.YamlPath)
+		assignAllIDs() // assign-IDs.go
 	}
 
 	tabStr := r.URL.Query().Get("tab")
