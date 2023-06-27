@@ -1,0 +1,14 @@
+version: "3"
+services:
+  miniboard:
+    image: aceberg/miniboard
+    restart: unless-stopped
+    ports:
+    - 8849:8849
+    volumes:
+    - ~/.dockerdata/miniboard:/data/miniboard       # app data (set your own path instead of dockerdata)
+    environment:
+      HOST: "0.0.0.0"         # optional, default: 0.0.0.0
+      PORT: "8849"            # optional, default: 8849
+      THEME: "flatly"         # optional, default: flatly
+      COLOR: "dark"           # optional, default: dark

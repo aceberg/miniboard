@@ -1,0 +1,22 @@
+version: "3"
+services:
+  node-bootstrap:
+    image: aceberg/node-bootstrap
+    restart: unless-stopped
+    ports:
+    - 8850:8850
+  miniboard:
+    image: aceberg/miniboard
+    restart: unless-stopped
+    ports:
+    - 8849:8849
+    command: "-n http://127.0.0.1:8850"
+    depends_on:
+      - node-bootstrap
+    volumes:
+    - ~/.dockerdata/miniboard:/data/miniboard       # app data (set your own path instead of dockerdata)
+    environment:
+      HOST: "0.0.0.0"         # optional, default: 0.0.0.0
+      PORT: "8849"            # optional, default: 8849
+      THEME: "flatly"         # optional, default: flatly
+      COLOR: "dark"           # optional, default: dark
