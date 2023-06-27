@@ -5,8 +5,12 @@
     <img src="https://raw.githubusercontent.com/aceberg/miniboard/main/assets/logo.png" width="20" />
 </a>miniboard</h1>
 <br/>
-Dashboard WIP
+Lightweight Dashboard with Tabs and online status check. Can be configured through GUI or yaml file.
 
-![screenshot](https://raw.githubusercontent.com/aceberg/miniboard/main/assets/Screenshot%202023-06-18%20at%2013-33-20%20MiniBoard.png)
+![screenshot](https://raw.githubusercontent.com/aceberg/miniboard/main/assets/Screenshot%202023-06-25%20at%2022-55-05%20MiniBoard%20-%20Docker.png)
+<details>
+  <summary>Themes</summary>
+  <img src="https://raw.githubusercontent.com/aceberg/miniboard/main/assets/MiniBoard%20-%20Themes.png">
+</details>
 
 <a href="https://www.flaticon.com/free-icons/skateboard" title="skateboard icons">Skateboard icons created by Freepik - Flaticon</a>

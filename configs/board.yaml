@@ -1,0 +1,37 @@
+tabs:
+    0:  # Tab IDs (integer). Default tab has ID 0
+        name: Tab1  # Tab name 
+        panels:     # Panels on this tab
+            0: Search   # Place ID (integer):Panel ID (string)
+            1: Panel2   # Use Place ID to sort Panels on Tab
+    1:
+        name: Tab2
+        panels:
+            0: Search
+panels:
+    Panel2:   # Panel ID (string) must be the same as Panel Name
+        name: Panel2    # Panel Name (string) must be the same as Panel ID
+        scan: false     # Check if hosts of this panel are online (true or false)
+        hosts:
+            0:  # Host ID (integer), use them to sort hosts on Panel
+                name: /r/selfhosted     # Host Name (string)
+                addr: reddit.com        # IP or DNS-name without http(s) is needed to scan if host is online (if scan=true)
+                port: ""                # Port to scan (default: 80)
+                url: https://www.reddit.com/r/selfhosted    # URL to click (with http(s) part)
+                icon: https://www.redditinc.com/assets/images/site/reddit-logo.png  # Link to icon
+    Search:
+        name: Search
+        scan: true
+        hosts:
+            0:
+                name: Google
+                addr: google.com
+                port: ""
+                url: https://www.google.com/
+                icon: ""
+            1:
+                name: DuckDuckGo
+                addr: duckduckgo.com
+                port: ""
+                url: https://duckduckgo.com/
+                icon: ""
