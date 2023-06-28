@@ -1,0 +1,13 @@
+[Unit]
+Description=miniboard
+Documentation=https://github.com/aceberg/miniboard
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=%i
+ExecStart=/usr/bin/miniboard -c /home/%i/.config/miniboard/config.yaml -b /home/%i/.config/miniboard/board.yaml
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
