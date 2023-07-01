@@ -9,8 +9,8 @@ import (
 )
 
 func execTemplate(w http.ResponseWriter, tpl string, guiData models.GuiData) {
-	tmpl, err := template.ParseFiles(TemplPath+tpl+".html", TemplPath+"header.html", TemplPath+"footer.html")
-	// tmpl, err := template.ParseFS(TemplHTML, TemplPath+tpl+".html", TemplPath+"header.html", TemplPath+"footer.html")
+	// tmpl, err := template.ParseFiles(TemplPath+tpl+".html", TemplPath+"header.html", TemplPath+"footer.html")
+	tmpl, err := template.ParseFS(TemplHTML, TemplPath+tpl+".html", TemplPath+"header.html", TemplPath+"footer.html")
 	check.IfError(err)
 	err = tmpl.ExecuteTemplate(w, "header", guiData)
 	check.IfError(err)
