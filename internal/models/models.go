@@ -27,9 +27,10 @@ type Host struct {
 
 // Panel - tab element
 type Panel struct {
-	Name  string       `yaml:"name"`
-	Scan  bool         `yaml:"scan"`
-	Hosts map[int]Host `yaml:"hosts"`
+	Name    string       `yaml:"name"`
+	Scan    bool         `yaml:"scan"`
+	Timeout string       `yaml:"timeout"`
+	Hosts   map[int]Host `yaml:"hosts"`
 }
 
 // Tab - board element
@@ -38,10 +39,34 @@ type Tab struct {
 	Panels map[int]string `yaml:"panels"`
 }
 
+// MonPanel - uptime element
+type MonPanel struct {
+	Retries int      `yaml:"retries"`
+	Notify  []string `yaml:"notify"`
+}
+
+// MonData - for monitoring results
+type MonData struct {
+	Panel string
+	Host  string
+	Addr  string
+	Port  string
+	Date  string
+	State bool
+}
+
+// Uptime - board element
+type Uptime struct {
+	Enabled bool                `yaml:"enabled"`
+	Notify  map[string]string   `yaml:"notify"`
+	Panels  map[string]MonPanel `yaml:"panels"`
+}
+
 // Links - all links
 type Links struct {
 	Tabs   map[int]Tab      `yaml:"tabs"`
 	Panels map[string]Panel `yaml:"panels"`
+	Uptime Uptime           `yaml:"uptime"`
 }
 
 // GuiData - web gui data
@@ -52,4 +77,5 @@ type GuiData struct {
 	Panels     map[int]Panel
 	CurrentTab string
 	TabEdit    int
+	UptimeMon  []MonData
 }

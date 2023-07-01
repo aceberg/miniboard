@@ -20,9 +20,10 @@ func Gui(confPath, yamlPath, nodePath string) {
 	log.Println("INFO: starting web gui with config", AppConfig.ConfPath)
 
 	AllLinks = yaml.Read(AppConfig.YamlPath)
-	// log.Println("ALL:", AllLinks)
-	assignAllIDs()   // assign-IDs.go
-	go scanPorts(60) // scan.go
+	// log.Println("ALL:", AllLinks.Uptime)
+	CountRetries = make(map[string]int)
+	assignAllIDs() // assign-IDs.go
+	go scanPorts() // scan.go
 
 	address := AppConfig.Host + ":" + AppConfig.Port
 
@@ -38,6 +39,7 @@ func Gui(confPath, yamlPath, nodePath string) {
 	http.HandleFunc("/panel_edit/", panelEditHandler)   // panel-edit.go
 	http.HandleFunc("/tabs/", tabsHandler)              // tabs.go
 	http.HandleFunc("/tab_edit/", tabEditHandler)       // tab-edit.go
+	http.HandleFunc("/uptime/", uptimeHandler)          // uptime.go
 	err := http.ListenAndServe(address, nil)
 	check.IfError(err)
 }

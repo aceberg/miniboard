@@ -34,6 +34,7 @@
 </style>
 <body>
     <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+    <div class="container">
         <ul class="navbar-nav">
             &nbsp;&nbsp;
             <li class="nav-item">
@@ -54,21 +55,18 @@
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" target="_blank" href="https://github.com/aceberg/miniboard">About</a></li>
                 </ul>
-                {{ range $key, $value := .Links.Tabs }}
-                <li class="nav-item">
-                    <a class="nav-link active" href="/?tab={{ $key }}">{{ .Name }}</a>
-                </li>
-                {{ end }}
+            </li>
+            {{ range $key, $value := .Links.Tabs }}
+            <li class="nav-item">
+                <a class="nav-link active" href="/?tab={{ $key }}">{{ .Name }}</a>
+            </li>
+            {{ end }}
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item">
+                <a class="nav-link active" href="/uptime/">Uptime</a>
             </li>
         </ul>
+    </div>
     </nav>
-
-    <!-- <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <a class="nav-link active" href="#">Active</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-    </ul> -->
 {{ end }}

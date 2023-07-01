@@ -16,7 +16,7 @@ func Get(path string) models.Conf {
 	viper.SetDefault("THEME", "flatly")
 	viper.SetDefault("COLOR", "dark")
 	viper.SetDefault("COLORON", "#89ff89")
-	viper.SetDefault("COLOROFF", "#ff3232")
+	viper.SetDefault("COLOROFF", "#ff7171")
 	viper.SetDefault("BTNWIDTH", "180px")
 
 	viper.SetConfigFile(path)
