@@ -3,6 +3,8 @@ package main
 import (
 	"flag"
 
+	_ "time/tzdata"
+
 	"github.com/aceberg/miniboard/internal/check"
 	"github.com/aceberg/miniboard/internal/web"
 )
