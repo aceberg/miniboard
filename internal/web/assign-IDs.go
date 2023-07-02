@@ -17,6 +17,7 @@ func assignHostIDs(panel string) {
 
 	newPanel.Name = AllLinks.Panels[panel].Name
 	newPanel.Scan = AllLinks.Panels[panel].Scan
+	newPanel.Timeout = AllLinks.Panels[panel].Timeout
 	newPanel.Hosts = make(map[int]models.Host)
 
 	i := 0

@@ -14,6 +14,7 @@ func panelsHandler(w http.ResponseWriter, r *http.Request) {
 	oldkey := r.FormValue("oldkey")
 	key := r.FormValue("key")
 	scan := r.FormValue("scan")
+	timeout := r.FormValue("timeout")
 
 	if key != "" {
 		// log.Println("PANEL:", oldkey, key, name, scan)
@@ -22,6 +23,7 @@ func panelsHandler(w http.ResponseWriter, r *http.Request) {
 
 		panel := models.Panel{}
 		panel.Name = key
+		panel.Timeout = timeout
 		if scan == "on" {
 			panel.Scan = true
 		}

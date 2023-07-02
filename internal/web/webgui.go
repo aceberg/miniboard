@@ -20,7 +20,7 @@ func Gui(confPath, yamlPath, nodePath string) {
 	log.Println("INFO: starting web gui with config", AppConfig.ConfPath)
 
 	AllLinks = yaml.Read(AppConfig.YamlPath)
-	// log.Println("ALL:", AllLinks.Uptime)
+	// log.Println("ALL:", AllLinks)
 	CountRetries = make(map[string]int)
 	assignAllIDs() // assign-IDs.go
 	go scanPorts() // scan.go

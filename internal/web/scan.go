@@ -1,11 +1,13 @@
 package web
 
 import (
-	"log"
+	// "log"
+	"strconv"
 	"time"
 
 	"github.com/aceberg/miniboard/internal/check"
 	"github.com/aceberg/miniboard/internal/models"
+	"github.com/aceberg/miniboard/internal/notify"
 )
 
 func scanPorts() {
@@ -24,6 +26,7 @@ func scanPanel(panelName string) {
 			onePanel := models.Panel{}
 			onePanel.Name = AllLinks.Panels[panelName].Name
 			onePanel.Scan = AllLinks.Panels[panelName].Scan
+			onePanel.Timeout = AllLinks.Panels[panelName].Timeout
 
 			onePanel.Hosts = make(map[int]models.Host)
 			for key, host := range AllLinks.Panels[panelName].Hosts {
@@ -31,8 +34,7 @@ func scanPanel(panelName string) {
 				host.State = check.State(host)
 				onePanel.Hosts[key] = host
 
-				if exists && (oldState != host.State) {
-					log.Println("INFO: online status changed, host =", host.Name, "online =", host.State)
+				if AllLinks.Uptime.Enabled && exists && (oldState != host.State) {
 
 					mon := models.MonData{}
 					mon.Panel = panelName
@@ -44,12 +46,14 @@ func scanPanel(panelName string) {
 					UptimeMon = append(UptimeMon, mon)
 
 					if host.State {
-						log.Println("INFO: host", panelName, ":", host.Name, "is up. Sending notification")
+						notify.Notify(panelName, host.Name, "is up", AllLinks.Uptime)
+						CountRetries[panelName+host.Name] = 0
 					}
 				}
-				if exists && !host.State {
+				if AllLinks.Uptime.Enabled && exists && !host.State {
 					if CountRetries[panelName+host.Name] == AllLinks.Uptime.Panels[panelName].Retries {
-						log.Println("INFO: host", panelName, ":", host.Name, "is down for", CountRetries[panelName+host.Name], "retries. Sending notification")
+						retries := strconv.Itoa(CountRetries[panelName+host.Name])
+						notify.Notify(panelName, host.Name, "is down"+" (retries: "+retries+")", AllLinks.Uptime)
 					}
 					CountRetries[panelName+host.Name] = CountRetries[panelName+host.Name] + 1
 				}
@@ -57,12 +61,12 @@ func scanPanel(panelName string) {
 			}
 			AllLinks.Panels[panelName] = onePanel
 		}
-		// if AllLinks.Panels[panelName].Timeout == "" {
-		// 	timeout := 60
-		// } else {
-		// 	// get int timeout
-		// }
-		timeout := 60
-		time.Sleep(time.Duration(timeout) * time.Second)
+
+		timeout, err := strconv.Atoi(AllLinks.Panels[panelName].Timeout)
+		if err != nil || timeout < 1 {
+			timeout = 1
+		}
+
+		time.Sleep(time.Duration(timeout) * 60 * time.Second)
 	}
 }

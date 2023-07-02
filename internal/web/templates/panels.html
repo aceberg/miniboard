@@ -10,6 +10,7 @@
                     <th style="width: 1em;"></th>
                     <th>Name</th>
                     <th>Scan</th>
+                    <th style="width: 10em;">Timeout</th>
                     <th style="width: 1em;"></th>
                 </thead>
                 {{ range $key, $value := .Links.Panels }}
@@ -34,6 +35,9 @@
                         </div>
                     </td>
                     <td>
+                        <input name="timeout" type="text" class="form-control" value="{{ .Timeout }}">
+                    </td>
+                    <td>
                         <button type="submit" class="btn btn-outline-success"><i class="bi bi-check2"></i></button>
                     </td>
                     </form>
@@ -51,6 +55,9 @@
                             </div>
                         </td>
                         <td>
+                            <input name="timeout" type="text" class="form-control" placeholder="Minutes">
+                        </td>
+                        <td>
                             <button type="submit" class="btn btn-outline-success"><i class="bi bi-check2"></i></button>
                         </td>
                     </form>
@@ -61,6 +68,7 @@
                 <div class="alert alert-info" role="alert">
                     <p>● <b>Name</b> - unique string</p>
                     <p>● <b>Scan</b> - check if hosts of this panel are online</p>
+                    <p>● <b>Timeout</b> - time between scans (minutes)</p>
                 </div>
             </div>
         </div>
