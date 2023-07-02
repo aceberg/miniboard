@@ -18,6 +18,7 @@ func Get(path string) models.Conf {
 	viper.SetDefault("COLORON", "#89ff89")
 	viper.SetDefault("COLOROFF", "#ff7171")
 	viper.SetDefault("BTNWIDTH", "180px")
+	viper.SetDefault("WEBREFRESH", "60")
 
 	viper.SetConfigFile(path)
 	viper.SetConfigType("yaml")
@@ -33,6 +34,7 @@ func Get(path string) models.Conf {
 	config.ColorOn, _ = viper.Get("COLORON").(string)
 	config.ColorOff, _ = viper.Get("COLOROFF").(string)
 	config.BtnWidth, _ = viper.Get("BTNWIDTH").(string)
+	config.WebRefresh, _ = viper.Get("WEBREFRESH").(string)
 
 	return config
 }
@@ -50,6 +52,7 @@ func Write(config models.Conf) {
 	viper.Set("coloron", config.ColorOn)
 	viper.Set("coloroff", config.ColorOff)
 	viper.Set("btnwidth", config.BtnWidth)
+	viper.Set("webrefresh", config.WebRefresh)
 
 	err := viper.WriteConfig()
 	check.IfError(err)

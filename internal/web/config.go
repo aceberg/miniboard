@@ -28,6 +28,11 @@ func saveConfigHandler(w http.ResponseWriter, r *http.Request) {
 	AppConfig.ColorOn = r.FormValue("coloron")
 	AppConfig.ColorOff = r.FormValue("coloroff")
 	AppConfig.BtnWidth = r.FormValue("btnwidth")
+	AppConfig.WebRefresh = r.FormValue("refresh")
+
+	if AppConfig.WebRefresh == "0" {
+		AppConfig.WebRefresh = "Do not use zero!"
+	}
 
 	conf.Write(AppConfig)
 

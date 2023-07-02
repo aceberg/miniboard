@@ -2,17 +2,18 @@ package models
 
 // Conf - web gui config
 type Conf struct {
-	Host     string
-	Port     string
-	Theme    string
-	Color    string
-	Icon     string
-	ConfPath string
-	YamlPath string
-	ColorOn  string
-	ColorOff string
-	BtnWidth string
-	NodePath string
+	Host       string
+	Port       string
+	Theme      string
+	Color      string
+	Icon       string
+	ConfPath   string
+	YamlPath   string
+	NodePath   string
+	ColorOn    string
+	ColorOff   string
+	BtnWidth   string
+	WebRefresh string
 }
 
 // Host - panel element
