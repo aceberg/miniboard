@@ -1,0 +1,100 @@
+{{ define "uptime-edit" }}
+
+<body>
+    <div class="container">
+        <br>
+        <div class="row">
+            <div class="col">
+                {{ if .Links.Uptime.Enabled }}
+                <a href="/uptime_edit/?edit=yes&enable=no">
+                    <button type="submit" class="btn btn-outline-success">Uptime enabled. Disable</button>
+                </a>
+                {{ else }}
+                <a href="/uptime_edit/?edit=yes&enable=yes">
+                    <button type="submit" class="btn btn-outline-danger">Uptime disabled. Enable</button>
+                </a>
+                {{ end }}
+                <br>
+                <br>
+                <h4>Notifications</h4>
+                <form action="/uptime_edit/" method="post" class="input-group">
+                    <input name="edit" type="hidden" value="yes">
+                    <input name="nname" type="text" placeholder="Name" class="form-control">
+                    <input name="link" type="text" placeholder="Link" class="form-control" style="width: 60%;">
+                    <button type="submit" class="btn btn-outline-success"><i class="bi bi-check2"></i></button>
+                </form>
+                <br>
+                <table class="table table-striped">
+                    <thead>
+                        <th>Del</th>
+                        <th>Name</th>
+                        <th>Link</th>
+                    </thead>
+                    {{ range $name, $value := .Links.Uptime.Notify }}
+                    <tr>
+                        <td>
+                            <a href="/uptime_edit/?edit=yes&delnotify={{ $name }}">
+                                <button type="submit" class="btn btn-outline-danger"><i class="bi bi-x-lg"></i></button>
+                            </a>
+                        </td>
+                        <td>{{ $name }}</td>
+                        <td>{{ $value }}</td>
+                    </tr>
+                    {{ end }}
+                </table>
+            </div>
+            <div class="col">
+                <table class="table table-striped">
+                    <thead>
+                        <th style="width: 0em;">Del</th>
+                        <th>Name</th>
+                        <th style="width: 3em;">Retries</th>
+                        <th>Notify</th>
+                        <th style="width: 0em;"></th>
+                    </thead>
+                    {{ range $key, $val := .Links.Uptime.Panels }}
+                    <tr>
+                        <td>
+                            <a href="/uptime_edit/?edit=yes&delpanel={{ $key }}">
+                                <button type="submit" class="btn btn-outline-danger"><i class="bi bi-x-lg"></i></button>
+                            </a>
+                        </td>
+                        <td><a href="/panel_edit/?edit={{ $key }}">{{ $key }}</a></td>
+                        <td>{{ .Retries }}</td>
+                        <td>{{ range .Notify }}{{ . }}<br>{{ end }}</td>
+                        <td></td>
+                    </tr>
+                    {{ end }}
+                    <tr>
+                        <td></td>
+                        <form action="/uptime_edit/" method="post" class="input-group">
+                            <input name="edit" type="hidden" value="yes">
+                            <td>
+                                <select name="newpanel" class="form-select">
+                                    {{ range $id, $panel := $.Links.Panels }}
+                                    <option value="{{ $id }}">{{ $id }}</option>
+                                    {{ end }}
+                                </select>
+                            </td>
+                            <td>
+                                <input name="retries" type="text" class="form-control">
+                            </td>
+                            <td>
+                                {{ range $id, $notif := $.Links.Uptime.Notify }}
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="notify" value="{{ $id }}">{{ $id }}
+                                </div>
+                                {{ end }}
+                            </td>
+                            <td>
+                                <button type="submit" class="btn btn-outline-success"><i class="bi bi-check2"></i></button>
+                            </td>
+                        </form>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{{ template "footer" }}
+{{ end }}

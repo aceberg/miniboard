@@ -40,6 +40,7 @@ func Gui(confPath, yamlPath, nodePath string) {
 	http.HandleFunc("/tabs/", tabsHandler)              // tabs.go
 	http.HandleFunc("/tab_edit/", tabEditHandler)       // tab-edit.go
 	http.HandleFunc("/uptime/", uptimeHandler)          // uptime.go
+	http.HandleFunc("/uptime_edit/", uptimeEditHandler) // uptime-edit.go
 	err := http.ListenAndServe(address, nil)
 	check.IfError(err)
 }
