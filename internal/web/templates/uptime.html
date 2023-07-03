@@ -28,9 +28,9 @@
                     <td>{{ .Date }}</td>
                     <td>
                         {{ if .State }}
-                        <i class="bi bi-circle-fill my-col-on"></i>
+                        <a href="/uptime/?state=on"><i class="bi bi-circle-fill my-col-on"></i></a>
                         {{ else }}
-                        <i class="bi bi-circle-fill my-col-off"></i>
+                        <a href="/uptime/?state=off"><i class="bi bi-circle-fill my-col-off"></i></a>
                         {{ end }}
                     </td>
                 </tr>

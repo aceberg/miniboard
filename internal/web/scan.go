@@ -45,7 +45,7 @@ func scanPanel(panelName string) {
 					mon.State = host.State
 					UptimeMon = append(UptimeMon, mon)
 
-					if host.State {
+					if host.State && (CountRetries[panelName+host.Name] >= AllLinks.Uptime.Panels[panelName].Retries) {
 						notify.Notify(panelName, host.Name, "is up", AllLinks.Uptime)
 						CountRetries[panelName+host.Name] = 0
 					}
