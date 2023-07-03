@@ -50,7 +50,7 @@
                         <th>Name</th>
                         <th style="width: 3em;">Retries</th>
                         <th>Notify</th>
-                        <th style="width: 0em;"></th>
+                        <th style="width: 0em;"><a href="/panels/">Timeout</a></th>
                     </thead>
                     {{ range $key, $val := .Links.Uptime.Panels }}
                     <tr>
@@ -62,7 +62,7 @@
                         <td><a href="/panel_edit/?edit={{ $key }}">{{ $key }}</a></td>
                         <td>{{ .Retries }}</td>
                         <td>{{ range .Notify }}{{ . }}<br>{{ end }}</td>
-                        <td></td>
+                        <td>{{ range $.Links.Panels }}{{ if eq .Name $key }}{{ .Timeout }}{{ end }}{{ end }}</td>
                     </tr>
                     {{ end }}
                     <tr>
