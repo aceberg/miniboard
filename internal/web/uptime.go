@@ -16,43 +16,12 @@ func uptimeHandler(w http.ResponseWriter, r *http.Request) {
 
 	filter := r.FormValue("filter")
 	panel := r.FormValue("panel")
+	host := r.FormValue("host")
 	state := r.FormValue("state")
 
-	if panel != "" {
-		for _, mon := range UptimeMon {
-			if panel == mon.Panel {
-				guiData.UptimeMon = append(guiData.UptimeMon, mon)
-			}
-		}
-
-		host := r.FormValue("host")
-		if host != "" {
-			newUptimeMon := []models.MonData{}
-
-			for _, mon := range guiData.UptimeMon {
-				if host == mon.Host {
-					newUptimeMon = append(newUptimeMon, mon)
-				}
-			}
-			guiData.UptimeMon = newUptimeMon
-		}
-	}
-	if state == "on" {
-		for _, mon := range UptimeMon {
-			if mon.State {
-				guiData.UptimeMon = append(guiData.UptimeMon, mon)
-			}
-		}
-	}
-	if state == "off" {
-		for _, mon := range UptimeMon {
-			if !mon.State {
-				guiData.UptimeMon = append(guiData.UptimeMon, mon)
-			}
-		}
-	}
-
-	if filter != "yes" {
+	if filter == "yes" {
+		guiData.UptimeMon = filterUptimeMon(panel, host, state) // uptime-filter.go
+	} else {
 		guiData.UptimeMon = UptimeMon
 	}
 
