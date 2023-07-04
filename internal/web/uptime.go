@@ -14,6 +14,7 @@ func uptimeHandler(w http.ResponseWriter, r *http.Request) {
 	guiData.CurrentTab = "Uptime Monitor"
 	guiData.Links.Tabs = AllLinks.Tabs
 
+	filter := r.FormValue("filter")
 	panel := r.FormValue("panel")
 	state := r.FormValue("state")
 
@@ -35,19 +36,23 @@ func uptimeHandler(w http.ResponseWriter, r *http.Request) {
 			}
 			guiData.UptimeMon = newUptimeMon
 		}
-	} else if state == "on" {
+	}
+	if state == "on" {
 		for _, mon := range UptimeMon {
 			if mon.State {
 				guiData.UptimeMon = append(guiData.UptimeMon, mon)
 			}
 		}
-	} else if state == "off" {
+	}
+	if state == "off" {
 		for _, mon := range UptimeMon {
 			if !mon.State {
 				guiData.UptimeMon = append(guiData.UptimeMon, mon)
 			}
 		}
-	} else {
+	}
+
+	if filter != "yes" {
 		guiData.UptimeMon = UptimeMon
 	}
 

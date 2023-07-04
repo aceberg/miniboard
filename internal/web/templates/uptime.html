@@ -18,19 +18,19 @@
                 {{ range .UptimeMon }}
                 <tr>
                     <td>
-                        <a href="/uptime/?panel={{ .Panel }}">{{ .Panel }}</a>
+                        <a href="/uptime/?filter=yes&panel={{ .Panel }}">{{ .Panel }}</a>
                     </td>
                     <td>
-                        <a href="/uptime/?panel={{ .Panel }}&host={{ .Host }}">{{ .Host }}</a>
+                        <a href="/uptime/?filter=yes&panel={{ .Panel }}&host={{ .Host }}">{{ .Host }}</a>
                     </td>
                     <td>{{ .Addr }}</td>
                     <td>{{ .Port }}</td>
                     <td>{{ .Date }}</td>
                     <td>
                         {{ if .State }}
-                        <a href="/uptime/?state=on"><i class="bi bi-circle-fill my-col-on"></i></a>
+                        <a href="/uptime/?filter=yes&state=on"><i class="bi bi-circle-fill my-col-on"></i></a>
                         {{ else }}
-                        <a href="/uptime/?state=off"><i class="bi bi-circle-fill my-col-off"></i></a>
+                        <a href="/uptime/?filter=yes&state=off"><i class="bi bi-circle-fill my-col-off"></i></a>
                         {{ end }}
                     </td>
                 </tr>
