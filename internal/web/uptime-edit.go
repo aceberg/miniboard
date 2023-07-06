@@ -21,10 +21,12 @@ func uptimeEditHandler(w http.ResponseWriter, r *http.Request) {
 	nname := r.FormValue("nname")
 	link := r.FormValue("link")
 	newpanel := r.FormValue("newpanel")
+	show := r.FormValue("show")
 
 	if enable == "yes" {
 		AllLinks.Uptime.Enabled = true
-	} else if enable == "no" {
+	}
+	if enable == "no" {
 		AllLinks.Uptime.Enabled = false
 	}
 	if delnotify != "" {
@@ -44,6 +46,9 @@ func uptimeEditHandler(w http.ResponseWriter, r *http.Request) {
 		newPan.Retries, _ = strconv.Atoi(retries)
 		newPan.Notify = notify
 		AllLinks.Uptime.Panels[newpanel] = newPan
+	}
+	if show != "" {
+		AllLinks.Uptime.Show, _ = strconv.Atoi(show)
 	}
 
 	guiData.Links = AllLinks

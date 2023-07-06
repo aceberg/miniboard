@@ -59,6 +59,7 @@ type MonData struct {
 // Uptime - board element
 type Uptime struct {
 	Enabled bool                `yaml:"enabled"`
+	Show    int                 `yaml:"show"`
 	Notify  map[string]string   `yaml:"notify"`
 	Panels  map[string]MonPanel `yaml:"panels"`
 }

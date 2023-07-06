@@ -29,5 +29,12 @@ func uptimeHandler(w http.ResponseWriter, r *http.Request) {
 		return guiData.UptimeMon[i].Date > guiData.UptimeMon[j].Date
 	})
 
+	if AllLinks.Uptime.Show < 1 {
+		AllLinks.Uptime.Show = 20
+	}
+	if len(guiData.UptimeMon) > AllLinks.Uptime.Show {
+		guiData.UptimeMon = guiData.UptimeMon[0:AllLinks.Uptime.Show]
+	}
+
 	execTemplate(w, "uptime", guiData)
 }

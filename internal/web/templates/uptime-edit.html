@@ -5,15 +5,26 @@
         <br>
         <div class="row">
             <div class="col">
-                {{ if .Links.Uptime.Enabled }}
-                <a href="/uptime_edit/?edit=yes&enable=no">
-                    <button type="submit" class="btn btn-outline-success">Uptime enabled. Disable</button>
-                </a>
-                {{ else }}
-                <a href="/uptime_edit/?edit=yes&enable=yes">
-                    <button type="submit" class="btn btn-outline-danger">Uptime disabled. Enable</button>
-                </a>
-                {{ end }}
+                <div class="row">
+                    <div class="col-8">
+                        {{ if .Links.Uptime.Enabled }}
+                        <a href="/uptime_edit/?edit=yes&enable=no">
+                            <button type="submit" class="btn btn-outline-success">Uptime enabled. Disable</button>
+                        </a>
+                        {{ else }}
+                        <a href="/uptime_edit/?edit=yes&enable=yes">
+                            <button type="submit" class="btn btn-outline-danger">Uptime disabled. Enable</button>
+                        </a>
+                        {{ end }}
+                    </div>
+                    <div class="col-4">
+                        <form action="/uptime_edit/" method="post" class="input-group">
+                            <input name="edit" type="hidden" value="yes">
+                            <input name="show" type="text" class="form-control" value="{{ .Links.Uptime.Show }}" title="Show lines on Uptime page (Default: 20)">
+                            <button type="submit" class="btn btn-outline-success"><i class="bi bi-check2"></i></button>
+                        </form>
+                    </div>
+                </div>
                 <br>
                 <br>
                 <h4>Notifications</h4>
