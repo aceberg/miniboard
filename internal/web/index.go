@@ -27,7 +27,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	guiData.CurrentTab = AllLinks.Tabs[tab].Name
-	guiData.Links.Tabs = AllLinks.Tabs
+	guiData.Links = AllLinks
 
 	guiData.Panels = make(map[int]models.Panel)
 	for i, name := range AllLinks.Tabs[tab].Panels {

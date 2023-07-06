@@ -12,7 +12,7 @@ func uptimeHandler(w http.ResponseWriter, r *http.Request) {
 	var guiData models.GuiData
 	guiData.Config = AppConfig
 	guiData.CurrentTab = "Uptime Monitor"
-	guiData.Links.Tabs = AllLinks.Tabs
+	guiData.Links = AllLinks
 
 	filter := r.FormValue("filter")
 	panel := r.FormValue("panel")

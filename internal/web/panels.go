@@ -46,8 +46,7 @@ func panelsHandler(w http.ResponseWriter, r *http.Request) {
 
 	guiData.Config = AppConfig
 	guiData.CurrentTab = "Edit Panels"
-	guiData.Links.Panels = AllLinks.Panels
-	guiData.Links.Tabs = AllLinks.Tabs
+	guiData.Links = AllLinks
 
 	execTemplate(w, "panels", guiData)
 }

@@ -13,7 +13,7 @@ func panelEditHandler(w http.ResponseWriter, r *http.Request) {
 
 	guiData.Config = AppConfig
 	guiData.CurrentTab = "Edit Panel"
-	guiData.Links.Tabs = AllLinks.Tabs
+	guiData.Links = AllLinks
 
 	edit := r.URL.Query().Get("edit")
 	del := r.URL.Query().Get("del")

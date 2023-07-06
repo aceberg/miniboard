@@ -13,7 +13,6 @@ func uptimeEditHandler(w http.ResponseWriter, r *http.Request) {
 
 	guiData.Config = AppConfig
 	guiData.CurrentTab = "Edit Uptime"
-	guiData.Links = AllLinks
 
 	edit := r.FormValue("edit")
 	enable := r.FormValue("enable")
@@ -47,6 +46,7 @@ func uptimeEditHandler(w http.ResponseWriter, r *http.Request) {
 		AllLinks.Uptime.Panels[newpanel] = newPan
 	}
 
+	guiData.Links = AllLinks
 	if edit == "yes" {
 		yaml.Write(AppConfig.YamlPath, AllLinks)
 		http.Redirect(w, r, "/uptime_edit/", 302)

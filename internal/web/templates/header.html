@@ -65,11 +65,13 @@
             </li>
             {{ end }}
         </ul>
+        {{ if .Links.Uptime.Enabled }}
         <ul class="nav navbar-nav navbar-right">
             <li class="nav-item">
                 <a class="nav-link active" href="/uptime/">Uptime</a>
             </li>
         </ul>
+        {{ end }}
     </div>
     </nav>
 {{ end }}
