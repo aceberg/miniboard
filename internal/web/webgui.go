@@ -21,7 +21,7 @@ func Gui(confPath, yamlPath, nodePath string) {
 
 	AllLinks = yaml.Read(AppConfig.YamlPath)
 	// log.Println("ALL:", AllLinks)
-	CountRetries = make(map[string]int)
+
 	assignAllIDs() // assign-IDs.go
 	go scanPorts() // scan.go
 

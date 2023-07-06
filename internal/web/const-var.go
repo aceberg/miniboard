@@ -13,8 +13,6 @@ var (
 	AllLinks models.Links
 	// UptimeMon - monitoring data
 	UptimeMon []models.MonData
-	// CountRetries - when to send notifications
-	CountRetries map[string]int
 )
 
 // TemplHTML - html templates

@@ -48,12 +48,13 @@ type MonPanel struct {
 
 // MonData - for monitoring results
 type MonData struct {
-	Panel string
-	Host  string
-	Addr  string
-	Port  string
-	Date  string
-	State bool
+	Panel  string
+	Host   string
+	Addr   string
+	Port   string
+	Date   string
+	State  bool
+	Notify bool
 }
 
 // Uptime - board element

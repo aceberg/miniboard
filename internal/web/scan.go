@@ -3,10 +3,16 @@ package web
 import (
 	// "log"
 	"strconv"
+	"sync"
 	"time"
 
 	"github.com/aceberg/miniboard/internal/check"
 	"github.com/aceberg/miniboard/internal/models"
+)
+
+var (
+	// Mu - mutex to prevent concurrent map writes
+	Mu sync.Mutex
 )
 
 func scanPorts() {
@@ -33,7 +39,9 @@ func scanPanel(panelName string) {
 
 				scanUptime(panelName, host, oldState) // scan-uptime.go
 			}
+			Mu.Lock()
 			AllLinks.Panels[panelName] = onePanel
+			Mu.Unlock()
 		}
 
 		timeout, err := strconv.Atoi(AllLinks.Panels[panelName].Timeout)
