@@ -23,7 +23,7 @@ func Notify(panelName, host, state string, uptime models.Uptime) {
 
 	for _, urlName := range uptime.Panels[panelName].Notify {
 
-		log.Println("INFO:", msg, "Sending notification")
-		shout("MiniBoard: "+msg, uptime.Notify[urlName])
+		log.Println("INFO:", msg, "Sending notification to ", urlName)
+		go shout("MiniBoard: "+msg, uptime.Notify[urlName])
 	}
 }
