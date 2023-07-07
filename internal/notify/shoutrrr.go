@@ -7,23 +7,20 @@ import (
 	"github.com/aceberg/miniboard/internal/models"
 )
 
-func shout(message string, url string) {
-	if url != "" {
-		err := shoutrrr.Send(url, message)
-		if err != nil {
-			log.Println("ERROR: Notification failed (shoutrrr):", err)
-		}
-	}
-}
-
 // Notify - send message with shoutrrr
 func Notify(panelName, host, state string, uptime models.Uptime) {
+	var urls []string
 
 	msg := "Host " + panelName + ":" + host + " " + state + "!"
 
 	for _, urlName := range uptime.Panels[panelName].Notify {
+		urls = append(urls, uptime.Notify[urlName])
+		log.Println("INFO:", msg, "Sending notification to", urlName)
+	}
 
-		log.Println("INFO:", msg, "Sending notification to ", urlName)
-		go shout("MiniBoard: "+msg, uptime.Notify[urlName])
+	sender, err := shoutrrr.CreateSender(urls...)
+	sender.Send("MiniBoard: "+msg, nil)
+	if err != nil {
+		log.Println("ERROR: Notification failed (shoutrrr):", err)
 	}
 }
