@@ -27,7 +27,7 @@
                 </div>
                 <br>
                 <br>
-                <h4>Notifications</h4>
+                <h4>Notifications (<a href="https://containrrr.dev/shoutrrr/0.7/services/overview/" target="_blank">Shoutrrr docs</a>)</h4>
                 <form action="/uptime_edit/" method="post" class="input-group">
                     <input name="edit" type="hidden" value="yes">
                     <input name="nname" type="text" placeholder="Name" class="form-control">
@@ -40,6 +40,7 @@
                         <th>Del</th>
                         <th>Name</th>
                         <th>Link</th>
+                        <th>Test</th>
                     </thead>
                     {{ range $name, $value := .Links.Uptime.Notify }}
                     <tr>
@@ -50,6 +51,11 @@
                         </td>
                         <td>{{ $name }}</td>
                         <td>{{ $value }}</td>
+                        <td>
+                            <a href="/uptime_edit/?notify={{ $name }}">
+                                <button type="submit" class="btn btn-outline-success">Test</button>
+                            </a>
+                        </td>
                     </tr>
                     {{ end }}
                 </table>

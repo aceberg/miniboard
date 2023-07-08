@@ -24,3 +24,13 @@ func Notify(panelName, host, state string, uptime models.Uptime) {
 		log.Println("ERROR: Notification failed (shoutrrr):", err)
 	}
 }
+
+// Test - send test notification
+func Test(urlName string, uptime models.Uptime) {
+
+	err := shoutrrr.Send(uptime.Notify[urlName], "MiniBoard: test notification")
+	log.Println("INFO: Sending test notification to", urlName)
+	if err != nil {
+		log.Println("ERROR: Notification failed (shoutrrr):", err)
+	}
+}
