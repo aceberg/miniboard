@@ -21,7 +21,7 @@ Section: utils
 Priority: optional
 Architecture: all
 Maintainer: aceberg <aceberg_a@proton.me>
-Description: Lightweight Dashboard with Tabs and online status check 
+Description: Lightweight dashboard with tabs, uptime monitoring and notifications 
 " > $PKGDIR/DEBIAN/control
 
 echo "
