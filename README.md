@@ -28,6 +28,7 @@ Can be configured through GUI or yaml file.
 ```sh
 docker run --name miniboard \
 -v ~/.dockerdata/miniboard:/data/miniboard \
+-v /var/run/docker.sock:/var/run/docker.sock \ # Only needed to create panel from Docker containers automatically
 -p 8849:8849 \
 aceberg/miniboard
 ```

@@ -7,6 +7,7 @@ services:
     - 8849:8849
     volumes:
     - ~/.dockerdata/miniboard:/data/miniboard       # app data (set your own path instead of dockerdata)
+    - /var/run/docker.sock:/var/run/docker.sock     # Only needed to create panel from Docker containers automatically
     environment:
       HOST: "0.0.0.0"         # optional, default: 0.0.0.0
       PORT: "8849"            # optional, default: 8849

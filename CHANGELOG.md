@@ -2,6 +2,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.0.1] - 2023-07-09
+### Added
+- Button to automatically create panel from Docker containers
+
 ## [1.0.0] - 2023-07-08
 ### Added
 - Uptime monitoring
