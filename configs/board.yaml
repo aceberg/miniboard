@@ -12,6 +12,7 @@ panels:
     Panel2:   # Panel ID (string) must be the same as Panel Name
         name: Panel2    # Panel Name (string) must be the same as Panel ID
         scan: false     # Check if hosts of this panel are online (true or false)
+        timeout: "5"    # Minutes between scans (Default: 1)
         hosts:
             0:  # Host ID (integer), use them to sort hosts on Panel
                 name: /r/selfhosted     # Host Name (string)
@@ -35,3 +36,13 @@ panels:
                 port: ""
                 url: https://duckduckgo.com/
                 icon: ""
+uptime:
+    enabled: true   # Enable uptime monitoring
+    show: 30        # Lines to show on Uptime page (Default: 20)
+    notify:         # URLs to notify (See Shoutrrr docs: https://containrrr.dev/shoutrrr/0.7/services/overview/)
+        gotify: gotify://192.168.2.2:8083/A2MD-k4uzC8-zuA/?title=Host status changed&DisableTLS=yes # Gotify example
+    panels:     # Monitored panels
+        Panel2:         # Panel name
+            retries: 3  # Retries before notification is send
+            notify:     # Which services to notify
+                - gotify

@@ -6,10 +6,11 @@
 <h1><a href="https://github.com/aceberg/miniboard">
     <img src="https://raw.githubusercontent.com/aceberg/miniboard/main/assets/logo.png" width="20" />
 </a>miniboard</h1>
-<br/>
-Lightweight Dashboard with Tabs and online status check. Can be configured through GUI or yaml file.     
+Lightweight dashboard with tabs, uptime monitoring and notifications.<br>
+Can be configured through GUI or yaml file.     
 
 - [Quick start](https://github.com/aceberg/miniboard#quick-start)
+- [Install binary](docs/INSTALL-BIN.md)
 - [Usage](https://github.com/aceberg/miniboard#usage)
 - [Config](https://github.com/aceberg/miniboard#config)
 - [Options](https://github.com/aceberg/miniboard#options)
@@ -30,7 +31,8 @@ docker run --name miniboard \
 -p 8849:8849 \
 aceberg/miniboard
 ```
-Or use [docker-compose.yml](docker-compose.yml)
+Or use [docker-compose.yml](docker-compose.yml)   
+There is also [binary installation](docs/INSTALL-BIN.md) available.
 
 
 ## Usage
@@ -51,6 +53,7 @@ Configuration can be done through config file or environment variables
 | COLORON | Online host color | #89ff89 |
 | COLOROFF | Offline host color | #ff3232 |
 | BTNWIDTH | Adjust buttons to theme | 180px |
+| WEBREFRESH | Refresh interval for Tabs and Uptime pages (seconds) | 60 |
 
 ## Options
 | Key  | Description | Default | 
