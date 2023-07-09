@@ -27,8 +27,9 @@ Can be configured through GUI or yaml file.
 
 ```sh
 docker run --name miniboard \
+-e "TZ=$YOURTIMEZONE" \
 -v ~/.dockerdata/miniboard:/data/miniboard \
--v /var/run/docker.sock:/var/run/docker.sock \ # Only needed to create panel from Docker containers automatically
+-v /var/run/docker.sock:/var/run/docker.sock \ # Only needed to create panel from Docker containers (On Edit panels page)
 -p 8849:8849 \
 aceberg/miniboard
 ```
@@ -55,6 +56,7 @@ Configuration can be done through config file or environment variables
 | COLOROFF | Offline host color | #ff3232 |
 | BTNWIDTH | Adjust buttons to theme | 180px |
 | WEBREFRESH | Refresh interval for Tabs and Uptime pages (seconds) | 60 |
+| TZ | Time zone (for uptime monitor) | "" |
 
 ## Options
 | Key  | Description | Default | 

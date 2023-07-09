@@ -16,9 +16,21 @@ var (
 	RetriesSyncMap sync.Map
 )
 
+func appendUptimeMon(panelName string, host models.Host, notif bool) {
+	mon := models.MonData{}
+	mon.Panel = panelName
+	mon.Host = host.Name
+	mon.Addr = host.Addr
+	mon.Port = host.Port
+	mon.Date = time.Now().Format("2006-01-02 15:04:05")
+	mon.State = host.State
+	mon.Notify = notif
+	UptimeMon = append(UptimeMon, mon)
+}
+
 func scanUptime(panelName string, host models.Host, oldState bool) {
 	var retries int
-	var notifEnabled bool
+	var notifEnabled, notif bool
 
 	_, exists := AllLinks.Uptime.Panels[panelName]
 
@@ -33,35 +45,19 @@ func scanUptime(panelName string, host models.Host, oldState bool) {
 
 		if oldState != host.State {
 
-			mon := models.MonData{}
-			mon.Panel = panelName
-			mon.Host = host.Name
-			mon.Addr = host.Addr
-			mon.Port = host.Port
-			mon.Date = time.Now().Format("2006-01-02 15:04:05")
-			mon.State = host.State
-
 			if notifEnabled && host.State && (retries > AllLinks.Uptime.Panels[panelName].Retries) {
 				notify.Notify(panelName, host.Name, "is up", AllLinks.Uptime)
 				RetriesSyncMap.Store(panelName+host.Name, 0)
-				mon.Notify = true
+				notif = true
 			}
-			UptimeMon = append(UptimeMon, mon)
+			appendUptimeMon(panelName, host, notif)
 		}
 		if notifEnabled && !host.State {
 			if retries == AllLinks.Uptime.Panels[panelName].Retries {
 				msg := fmt.Sprintf("is down (retries: %d)", AllLinks.Uptime.Panels[panelName].Retries)
 				notify.Notify(panelName, host.Name, msg, AllLinks.Uptime)
 
-				mon := models.MonData{}
-				mon.Panel = panelName
-				mon.Host = host.Name
-				mon.Addr = host.Addr
-				mon.Port = host.Port
-				mon.Date = time.Now().Format("2006-01-02 15:04:05")
-				mon.State = host.State
-				mon.Notify = true
-				UptimeMon = append(UptimeMon, mon)
+				appendUptimeMon(panelName, host, true)
 			}
 			RetriesSyncMap.Store(panelName+host.Name, retries+1)
 		}

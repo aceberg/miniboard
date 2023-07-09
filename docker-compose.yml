@@ -9,6 +9,7 @@ services:
     - ~/.dockerdata/miniboard:/data/miniboard       # app data (set your own path instead of dockerdata)
     - /var/run/docker.sock:/var/run/docker.sock     # Only needed to create panel from Docker containers automatically
     environment:
+      TZ: Asia/Novosibirsk    # required for uptime monitor, default ""
       HOST: "0.0.0.0"         # optional, default: 0.0.0.0
       PORT: "8849"            # optional, default: 8849
       THEME: "flatly"         # optional, default: flatly
