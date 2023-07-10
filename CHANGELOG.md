@@ -2,6 +2,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.0.2] - 2023-07-10
+### Added
+- Binary user guide
+### Fixed
+- Send test notification bug
+
 ## [1.0.1] - 2023-07-09
 ### Added
 - Button to automatically create panel from Docker containers (On `Edit panels` page)

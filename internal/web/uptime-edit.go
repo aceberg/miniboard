@@ -23,7 +23,7 @@ func uptimeEditHandler(w http.ResponseWriter, r *http.Request) {
 	link := r.FormValue("link")
 	newpanel := r.FormValue("newpanel")
 	show := r.FormValue("show")
-	notif := r.FormValue("notify")
+	testNotify := r.FormValue("testnotify")
 
 	if enable == "yes" {
 		AllLinks.Uptime.Enabled = true
@@ -52,8 +52,8 @@ func uptimeEditHandler(w http.ResponseWriter, r *http.Request) {
 	if show != "" {
 		AllLinks.Uptime.Show, _ = strconv.Atoi(show)
 	}
-	if notif != "" {
-		notify.Test(notif, AllLinks.Uptime)
+	if testNotify != "" {
+		notify.SendTest(testNotify, AllLinks.Uptime)
 	}
 
 	guiData.Links = AllLinks
