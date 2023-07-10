@@ -1,7 +1,7 @@
 package web
 
 import (
-	"log"
+	// "log"
 	"strconv"
 	"sync"
 	"time"
@@ -68,8 +68,6 @@ func scanPanel(panelName string, quit chan bool) {
 			if err != nil || timeout < 1 {
 				timeout = 1
 			}
-
-			log.Println("Scaned panel", panelName)
 
 			time.Sleep(time.Duration(timeout) * 60 * time.Second)
 		}
