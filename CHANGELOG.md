@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## [1.0.3] - 2023-07-10
 ### Added
 - Scan goroutine reload (`Reload` in the menu)
+- Version on config page
 
 ### Fixed
 - Auto add new panels to scan
