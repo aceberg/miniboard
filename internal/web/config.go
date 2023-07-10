@@ -3,6 +3,7 @@ package web
 import (
 	"net/http"
 
+	"github.com/aceberg/miniboard/internal/check"
 	"github.com/aceberg/miniboard/internal/conf"
 	"github.com/aceberg/miniboard/internal/models"
 )
@@ -13,6 +14,12 @@ func configHandler(w http.ResponseWriter, r *http.Request) {
 	guiData.Config = AppConfig
 	guiData.Links = AllLinks
 	guiData.CurrentTab = "Config"
+
+	file, err := TemplHTML.ReadFile(TemplPath + "version")
+	check.IfError(err)
+
+	version := string(file)
+	guiData.Version = version[8:]
 
 	guiData.Themes = []string{"cerulean", "cosmo", "cyborg", "darkly", "flatly", "journal", "litera", "lumen", "lux", "materia", "minty", "morph", "pulse", "quartz", "sandstone", "simplex", "sketchy", "slate", "solar", "spacelab", "superhero", "united", "vapor", "yeti", "zephyr"}
 

@@ -2,6 +2,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.0.3] - 2023-07-10
+### Added
+- Scan goroutine reload (`Reload` in the menu)
+
+### Fixed
+- Auto add new panels to scan
+- Auto remove deleted panels from scan
+
 ## [1.0.2] - 2023-07-10
 ### Added
 - Binary user guide

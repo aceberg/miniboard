@@ -82,4 +82,5 @@ type GuiData struct {
 	CurrentTab string
 	TabEdit    int
 	UptimeMon  []MonData
+	Version    string
 }
