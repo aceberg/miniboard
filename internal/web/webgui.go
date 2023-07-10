@@ -17,13 +17,14 @@ func Gui(confPath, yamlPath, nodePath string) {
 	AppConfig.NodePath = nodePath
 	AppConfig.YamlPath = yamlPath
 	AppConfig.Icon = Icon
+	AppConfig.Quit = make(chan bool)
 	log.Println("INFO: starting web gui with config", AppConfig.ConfPath)
 
 	AllLinks = yaml.Read(AppConfig.YamlPath)
 	// log.Println("ALL:", AllLinks)
 
-	assignAllIDs() // assign-IDs.go
-	go scanPorts() // scan.go
+	assignAllIDs()               // assign-IDs.go
+	go scanPorts(AppConfig.Quit) // scan.go
 
 	address := AppConfig.Host + ":" + AppConfig.Port
 

@@ -25,7 +25,7 @@ func Notify(panelName, host, state string, uptime models.Uptime) {
 	}
 }
 
-// Test - send test notification
+// SendTest - send test notification
 func SendTest(urlName string, uptime models.Uptime) {
 
 	err := shoutrrr.Send(uptime.Notify[urlName], "MiniBoard: test notification")

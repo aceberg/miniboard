@@ -16,6 +16,13 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	if reload == "yes" {
 		AllLinks = yaml.Read(AppConfig.YamlPath)
 		assignAllIDs() // assign-IDs.go
+
+		close(AppConfig.Quit)
+		AppConfig.Quit = make(chan bool)
+
+		go scanPorts(AppConfig.Quit) // scan.go
+
+		http.Redirect(w, r, "/", 302)
 	}
 
 	tabStr := r.URL.Query().Get("tab")

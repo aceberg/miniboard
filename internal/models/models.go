@@ -14,6 +14,7 @@ type Conf struct {
 	ColorOff   string
 	BtnWidth   string
 	WebRefresh string
+	Quit       chan bool
 }
 
 // Host - panel element
