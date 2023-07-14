@@ -14,6 +14,7 @@ func tabsHandler(w http.ResponseWriter, r *http.Request) {
 
 	idStr := r.FormValue("id")
 	name := r.FormValue("name")
+	refresh := r.FormValue("refresh")
 	panels := r.PostForm["panels"]
 
 	upStr := r.FormValue("up")
@@ -29,6 +30,7 @@ func tabsHandler(w http.ResponseWriter, r *http.Request) {
 
 		tab := models.Tab{}
 		tab.Name = name
+		tab.Refresh = refresh
 
 		if idStr == "" {
 			id = len(AllLinks.Tabs)

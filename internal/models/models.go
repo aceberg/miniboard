@@ -37,8 +37,9 @@ type Panel struct {
 
 // Tab - board element
 type Tab struct {
-	Name   string         `yaml:"name"`
-	Panels map[int]string `yaml:"panels"`
+	Name    string         `yaml:"name"`
+	Refresh string         `yaml:"refresh"`
+	Panels  map[int]string `yaml:"panels"`
 }
 
 // MonPanel - uptime element

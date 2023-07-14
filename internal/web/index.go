@@ -36,6 +36,10 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	guiData.CurrentTab = AllLinks.Tabs[tab].Name
 	guiData.Links = AllLinks
 
+	if AllLinks.Tabs[tab].Refresh != "" && AllLinks.Tabs[tab].Refresh != "0" {
+		guiData.Config.WebRefresh = AllLinks.Tabs[tab].Refresh
+	}
+
 	guiData.Panels = make(map[int]models.Panel)
 	for i, name := range AllLinks.Tabs[tab].Panels {
 		guiData.Panels[i] = AllLinks.Panels[name]
