@@ -2,6 +2,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.0.4] - 2023-07-14
+### Added
+- Uptime: color Date
+- Uptime: list services to notify
+- Tabs: separate refresh config for each tab
+
 ## [1.0.3] - 2023-07-10
 ### Added
 - Scan goroutine reload (`Reload` in the menu)

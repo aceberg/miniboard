@@ -1,11 +1,13 @@
 tabs:
     0:  # Tab IDs (integer). Default tab has ID 0
         name: Tab1  # Tab name 
+        refresh: "" # Refresh Webpage (seconds). Leave blank for system-wide config:WebRefresh to work
         panels:     # Panels on this tab
             0: Search   # Place ID (integer):Panel ID (string)
             1: Panel2   # Use Place ID to sort Panels on Tab
     1:
         name: Tab2
+        refresh: "240"
         panels:
             0: Search
 panels:
@@ -41,7 +43,7 @@ uptime:
     show: 30        # Lines to show on Uptime page (Default: 20)
     notify:         # URLs to notify (See Shoutrrr docs: https://containrrr.dev/shoutrrr/0.7/services/overview/)
         gotify: gotify://192.168.2.2:8083/A2MD-k4uzC8-zuA/?title=Host status changed&DisableTLS=yes # Gotify example
-    panels:     # Monitored panels
+    panels:         # Monitored panels
         Panel2:         # Panel name
             retries: 3  # Retries before notification is send
             notify:     # Which services to notify
