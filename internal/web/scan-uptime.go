@@ -26,7 +26,9 @@ func appendUptimeMon(panelName string, host models.Host, notif bool) {
 	mon.Date = t.Format("2006-01-02 15:04:05")
 	mon.Color = check.Color(t.Format("2006-01-02"))
 	mon.State = host.State
-	mon.Notify = notif
+	if notif {
+		mon.Notify = AllLinks.Uptime.Panels[panelName].Notify
+	}
 	UptimeMon = append(UptimeMon, mon)
 }
 

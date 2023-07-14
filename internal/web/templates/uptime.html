@@ -35,9 +35,7 @@
                         {{ end }}
                     </td>
                     <td>
-                        {{ if .Notify }}
-                        <i class="bi bi-send"></i>
-                        {{ end }}
+                        {{ range .Notify }}{{ . }} {{ end }}
                     </td>
                 </tr>
                 {{ end }}

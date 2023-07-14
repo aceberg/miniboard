@@ -56,7 +56,7 @@ type MonData struct {
 	Date   string
 	Color  string
 	State  bool
-	Notify bool
+	Notify []string
 }
 
 // Uptime - board element
