@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	// "github.com/aceberg/miniboard/internal/check"
+	"github.com/aceberg/miniboard/internal/check"
 	"github.com/aceberg/miniboard/internal/models"
 	"github.com/aceberg/miniboard/internal/notify"
 )
@@ -22,7 +22,9 @@ func appendUptimeMon(panelName string, host models.Host, notif bool) {
 	mon.Host = host.Name
 	mon.Addr = host.Addr
 	mon.Port = host.Port
-	mon.Date = time.Now().Format("2006-01-02 15:04:05")
+	t := time.Now()
+	mon.Date = t.Format("2006-01-02 15:04:05")
+	mon.Color = check.Color(t.Format("2006-01-02"))
 	mon.State = host.State
 	mon.Notify = notif
 	UptimeMon = append(UptimeMon, mon)
