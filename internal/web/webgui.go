@@ -32,17 +32,16 @@ func Gui(confPath, yamlPath, nodePath string) {
 	log.Printf("Web GUI at http://%s", address)
 	log.Println("=================================== ")
 
-	http.HandleFunc("/", indexHandler)                      // index.go
-	http.HandleFunc("/config/", configHandler)              // config.go
-	http.HandleFunc("/config_save/", saveConfigHandler)     // config.go
-	http.HandleFunc("/host/", hostHandler)                  // host.go
-	http.HandleFunc("/panels/", panelsHandler)              // panels.go
-	http.HandleFunc("/panel_edit/", panelEditHandler)       // panel-edit.go
-	http.HandleFunc("/tabs/", tabsHandler)                  // tabs.go
-	http.HandleFunc("/tab_edit/", tabEditHandler)           // tab-edit.go
-	http.HandleFunc("/uptime/", uptimeHandler)              // uptime.go
-	http.HandleFunc("/uptime_edit/", uptimeEditHandler)     // uptime-edit.go
-	http.HandleFunc("/uptime_filter/", uptimeFilterHandler) // uptime-filter.go
+	http.HandleFunc("/", indexHandler)                  // index.go
+	http.HandleFunc("/config/", configHandler)          // config.go
+	http.HandleFunc("/config_save/", saveConfigHandler) // config.go
+	http.HandleFunc("/host/", hostHandler)              // host.go
+	http.HandleFunc("/panels/", panelsHandler)          // panels.go
+	http.HandleFunc("/panel_edit/", panelEditHandler)   // panel-edit.go
+	http.HandleFunc("/tabs/", tabsHandler)              // tabs.go
+	http.HandleFunc("/tab_edit/", tabEditHandler)       // tab-edit.go
+	http.HandleFunc("/uptime/", uptimeHandler)          // uptime.go
+	http.HandleFunc("/uptime_edit/", uptimeEditHandler) // uptime-edit.go
 	err := http.ListenAndServe(address, nil)
 	check.IfError(err)
 }

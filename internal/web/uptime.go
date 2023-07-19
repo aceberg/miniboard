@@ -14,7 +14,13 @@ func uptimeHandler(w http.ResponseWriter, r *http.Request) {
 	guiData.CurrentTab = "Uptime Monitor"
 	guiData.Links = AllLinks
 
-	guiData.UptimeMon = UptimeMon
+	filter := r.FormValue("filter")
+
+	if filter == "yes" {
+		guiData.UptimeMon = filterUptime(r)
+	} else {
+		guiData.UptimeMon = UptimeMon
+	}
 
 	sort.Slice(guiData.UptimeMon, func(i, j int) bool {
 		return guiData.UptimeMon[i].Time > guiData.UptimeMon[j].Time
