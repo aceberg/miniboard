@@ -2,6 +2,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.0.5] - 2023-07-
+### Added
+- Uptime: split date and time
+- Uptime: filter by date, address, port, notification
+
+### Changed
+- Connection timeout to 3 seconds
+
 ## [1.0.4] - 2023-07-14
 ### Added
 - Uptime: color Date
