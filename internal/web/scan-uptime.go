@@ -14,6 +14,8 @@ import (
 var (
 	// RetriesSyncMap - count retries to send notifications
 	RetriesSyncMap sync.Map
+	// MuUptime - mutex for AllLinks.Uptime
+	MuUptime sync.Mutex
 )
 
 func appendUptimeMon(panelName string, host models.Host, notif bool) {
@@ -28,7 +30,9 @@ func appendUptimeMon(panelName string, host models.Host, notif bool) {
 	mon.Color = check.Color(mon.Date)
 	mon.State = host.State
 	if notif {
+		MuUptime.Lock()
 		mon.Notify = AllLinks.Uptime.Panels[panelName].Notify
+		MuUptime.Unlock()
 	}
 	UptimeMon = append(UptimeMon, mon)
 }
@@ -37,9 +41,11 @@ func scanUptime(panelName string, host models.Host, oldState bool) {
 	var retries int
 	var notifEnabled, notif bool
 
+	MuUptime.Lock()
 	panel, exists := AllLinks.Uptime.Panels[panelName]
+	MuUptime.Unlock()
 
-	if AllLinks.Uptime.Enabled && exists {
+	if exists {
 		if len(panel.Notify) > 0 {
 			retriesAny, ok := RetriesSyncMap.LoadOrStore(panelName+host.Name, 0)
 			if ok {

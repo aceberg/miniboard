@@ -11,8 +11,8 @@ import (
 )
 
 var (
-	// Mu - mutex to prevent concurrent map writes
-	Mu sync.Mutex
+	// MuScan - mutex for AllLinks.Panels
+	MuScan sync.Mutex
 )
 
 func scanPorts(quit chan bool) {
@@ -23,7 +23,10 @@ func scanPorts(quit chan bool) {
 		case <-quit:
 			return
 		default:
-			for name := range AllLinks.Panels {
+			MuScan.Lock()
+			panels := AllLinks.Panels
+			MuScan.Unlock()
+			for name := range panels {
 				_, exists := alreadyScanning[name]
 				if !exists {
 					go scanPanel(name, quit)
@@ -42,7 +45,9 @@ func scanPanel(panelName string, quit chan bool) {
 		case <-quit:
 			return
 		default:
+			MuScan.Lock()
 			panel, exists := AllLinks.Panels[panelName]
+			MuScan.Unlock()
 			if !exists {
 				return
 			}
@@ -56,12 +61,14 @@ func scanPanel(panelName string, quit chan bool) {
 					host.State = check.State(host)
 					hosts[key] = host
 
-					scanUptime(panelName, host, oldState) // scan-uptime.go
+					if AllLinks.Uptime.Enabled {
+						scanUptime(panelName, host, oldState) // scan-uptime.go
+					}
 				}
 				panel.Hosts = hosts
-				Mu.Lock()
+				MuScan.Lock()
 				AllLinks.Panels[panelName] = panel
-				Mu.Unlock()
+				MuScan.Unlock()
 			}
 
 			timeout, err := strconv.Atoi(panel.Timeout)

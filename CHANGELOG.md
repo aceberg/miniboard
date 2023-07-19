@@ -2,13 +2,17 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [1.0.5] - 2023-07-
+## [1.0.5] - 2023-07-19
 ### Added
 - Uptime: split date and time
 - Uptime: filter by date, address, port, notification
+- Edit board file online
 
 ### Changed
 - Connection timeout to 3 seconds
+
+### Fixed
+- Error: concurrent map read and map write
 
 ## [1.0.4] - 2023-07-14
 ### Added

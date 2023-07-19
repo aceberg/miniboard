@@ -1,0 +1,17 @@
+{{ define "file" }}
+</head>
+<body>
+    <div class="container">
+        <br>
+        <div class="row">
+            <div class="col">
+                <form action="/file/" method="post">
+                    <textarea name="text" rows="50" class="form-control">{{ .Version }}</textarea>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{{ template "footer" }}
+{{ end }}
