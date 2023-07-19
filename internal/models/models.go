@@ -55,6 +55,7 @@ type MonData struct {
 	Addr   string
 	Port   string
 	Date   string
+	Time   string
 	Color  string
 	State  bool
 	Notify []string
