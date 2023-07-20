@@ -17,14 +17,10 @@ func Gui(confPath, yamlPath, nodePath string) {
 	AppConfig.NodePath = nodePath
 	AppConfig.YamlPath = yamlPath
 	AppConfig.Icon = Icon
-	AppConfig.Quit = make(chan bool)
+
 	log.Println("INFO: starting web gui with config", AppConfig.ConfPath)
 
-	AllLinks = yaml.Read(AppConfig.YamlPath)
-	// log.Println("ALL:", AllLinks)
-
-	assignAllIDs()               // assign-IDs.go
-	go scanPorts(AppConfig.Quit) // scan.go
+	reloadScans() // webgui.go
 
 	address := AppConfig.Host + ":" + AppConfig.Port
 
@@ -45,4 +41,16 @@ func Gui(confPath, yamlPath, nodePath string) {
 	http.HandleFunc("/uptime_edit/", uptimeEditHandler) // uptime-edit.go
 	err := http.ListenAndServe(address, nil)
 	check.IfError(err)
+}
+
+func reloadScans() {
+	AllLinks = yaml.Read(AppConfig.YamlPath)
+	assignAllIDs() // assign-IDs.go
+
+	if AppConfig.Quit != nil {
+		close(AppConfig.Quit)
+	}
+	AppConfig.Quit = make(chan bool)
+
+	go scanPorts(AppConfig.Quit) // scan.go
 }

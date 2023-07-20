@@ -6,7 +6,6 @@ import (
 
 	"github.com/aceberg/miniboard/internal/check"
 	"github.com/aceberg/miniboard/internal/models"
-	"github.com/aceberg/miniboard/internal/yaml"
 )
 
 func fileHandler(w http.ResponseWriter, r *http.Request) {
@@ -25,13 +24,7 @@ func fileHandler(w http.ResponseWriter, r *http.Request) {
 		err := os.WriteFile(AppConfig.YamlPath, []byte(text), 0644)
 		check.IfError(err)
 
-		AllLinks = yaml.Read(AppConfig.YamlPath)
-		assignAllIDs() // assign-IDs.go
-
-		close(AppConfig.Quit)
-		AppConfig.Quit = make(chan bool)
-
-		go scanPorts(AppConfig.Quit) // scan.go
+		reloadScans() // webgui.go
 
 		http.Redirect(w, r, r.Header.Get("Referer"), 302)
 	}

@@ -5,7 +5,6 @@ import (
 	"strconv"
 
 	"github.com/aceberg/miniboard/internal/models"
-	"github.com/aceberg/miniboard/internal/yaml"
 )
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
@@ -14,13 +13,8 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 	reload := r.URL.Query().Get("reload")
 	if reload == "yes" {
-		AllLinks = yaml.Read(AppConfig.YamlPath)
-		assignAllIDs() // assign-IDs.go
 
-		close(AppConfig.Quit)
-		AppConfig.Quit = make(chan bool)
-
-		go scanPorts(AppConfig.Quit) // scan.go
+		reloadScans() // webgui.go
 
 		http.Redirect(w, r, "/", 302)
 	}

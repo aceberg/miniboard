@@ -26,6 +26,10 @@ func uptimeHandler(w http.ResponseWriter, r *http.Request) {
 		return guiData.UptimeMon[i].Time > guiData.UptimeMon[j].Time
 	})
 
+	sort.Slice(guiData.UptimeMon, func(i, j int) bool {
+		return guiData.UptimeMon[i].Date > guiData.UptimeMon[j].Date
+	})
+
 	if AllLinks.Uptime.Show < 1 {
 		AllLinks.Uptime.Show = 20
 	}
