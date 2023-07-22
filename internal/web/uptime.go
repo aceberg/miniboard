@@ -22,13 +22,15 @@ func uptimeHandler(w http.ResponseWriter, r *http.Request) {
 		guiData.UptimeMon = UptimeMon
 	}
 
-	sort.Slice(guiData.UptimeMon, func(i, j int) bool {
-		return guiData.UptimeMon[i].Time > guiData.UptimeMon[j].Time
-	})
-
-	sort.Slice(guiData.UptimeMon, func(i, j int) bool {
-		return guiData.UptimeMon[i].Date > guiData.UptimeMon[j].Date
-	})
+	sort.SliceStable(guiData.UptimeMon, func(i, j int) bool {
+        mi, mj := guiData.UptimeMon[i], guiData.UptimeMon[j]
+        switch {
+        case mi.Date != mj.Date:
+            return mi.Date > mj.Date
+        default:
+            return mi.Time > mj.Time
+        }
+    })
 
 	if AllLinks.Uptime.Show < 1 {
 		AllLinks.Uptime.Show = 20
