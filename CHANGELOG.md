@@ -2,6 +2,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.0.7] - 2023-07-23
+### Fixed
+- Uptime sort issue
+
 ## [1.0.6] - 2023-07-20
 ### Fixed
 - Uptime sorted by Date and Time
