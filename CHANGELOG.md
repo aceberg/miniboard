@@ -2,6 +2,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.0.8] - 2023-08-23
+### Changed
+- Monospace font in edit board file [Issue #3](https://github.com/aceberg/miniboard/issues/3)
+- Edit scan and timeout on panel page
+
 ## [1.0.7] - 2023-07-23
 ### Fixed
 - Uptime sort issue

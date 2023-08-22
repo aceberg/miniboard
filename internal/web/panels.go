@@ -42,6 +42,8 @@ func panelsHandler(w http.ResponseWriter, r *http.Request) {
 
 			yaml.Write(AppConfig.YamlPath, AllLinks)
 		}
+
+		http.Redirect(w, r, r.Header.Get("Referer"), 302)
 	}
 
 	guiData.Config = AppConfig

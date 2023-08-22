@@ -10,11 +10,29 @@
                     <div class="col">
                         <h4>Edit panel {{ $key }}</h4>
                     </div>
-                    <div class="col"></div>
                     <div class="col">
-                        <a href="/panel_edit/?del={{ $key }}">
-                            <button type="submit" class="btn btn-outline-danger">Delete panel</button>
-                        </a>
+                        <form action="/panels/" class="input-group">
+                            <span class="input-group-text">Scan</span>&nbsp;&nbsp;
+                            <input name="oldkey" type="hidden" value="{{ $key }}">
+                            <input name="key" type="hidden" value="{{ $key }}">
+                            <div class="form-check">
+                                {{ if .Scan }}
+                                <input class="form-check-input" type="checkbox" name="scan" checked>
+                                {{ else }}
+                                <input class="form-check-input" type="checkbox" name="scan">
+                                {{ end }}
+                            </div>
+                            <span class="input-group-text">Timeout</span>
+                            <input name="timeout" type="text" class="form-control" value="{{ .Timeout }}" placeholder="Minutes">
+                            <button type="submit" class="btn btn-outline-success"><i class="bi bi-check2"></i></button>
+                        </form>
+                    </div>
+                    <div class="col">
+                        <div class="d-flex justify-content-end">
+                            <a href="/panel_edit/?del={{ $key }}">
+                                <button type="submit" class="btn btn-outline-danger">Delete panel</button>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <br>
