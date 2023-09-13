@@ -10,7 +10,7 @@ services:
     restart: unless-stopped
     ports:
     - 8849:8849
-    command: "-n http://127.0.0.1:8850"
+    command: "-n http://YOUR_IP:8850" # Put your server IP or DNS name here
     depends_on:
       - node-bootstrap
     volumes:

@@ -2,6 +2,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.0.9] - 2023-09-13
+### Fixed
+- Docker image changed from `scratch` to `alpine`, to fix `shoutrrr` notifications problem
+
 ## [1.0.8] - 2023-08-23
 ### Changed
 - Monospace font in edit board file [Issue #3](https://github.com/aceberg/miniboard/issues/3)

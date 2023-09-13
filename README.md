@@ -77,7 +77,7 @@ docker run --name node-bootstrap          \
 docker run --name miniboard \
     -v ~/.dockerdata/miniboard:/data/miniboard \
     -p 8849:8849 \
-    aceberg/miniboard -n "http://127.0.0.1:8850"
+    aceberg/miniboard -n "http://$YOUR_IP:8850"
 ```
 Or use [docker-compose](docker-compose-local.yml)
 
