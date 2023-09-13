@@ -8,7 +8,7 @@ COPY go.sum /src/
 RUN cd /src/cmd/miniboard/ && CGO_ENABLED=0 go build -o /miniboard .
 
 
-FROM scratch
+FROM alpine
 
 WORKDIR /data/miniboard
 WORKDIR /app
