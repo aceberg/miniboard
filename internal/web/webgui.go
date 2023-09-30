@@ -10,17 +10,19 @@ import (
 )
 
 // Gui - start web server
-func Gui(confPath, yamlPath, nodePath string) {
+func Gui(confPath, yamlPath, dbPath, nodePath string) {
 
 	AppConfig = conf.Get(confPath)
 	AppConfig.ConfPath = confPath
 	AppConfig.NodePath = nodePath
 	AppConfig.YamlPath = yamlPath
+	AppConfig.DBPath = dbPath
 	AppConfig.Icon = Icon
 
 	log.Println("INFO: starting web gui with config", AppConfig.ConfPath)
 
-	reloadScans() // webgui.go
+	go dbRoutine() // db-routine.go
+	reloadScans()  // webgui.go
 
 	address := AppConfig.Host + ":" + AppConfig.Port
 

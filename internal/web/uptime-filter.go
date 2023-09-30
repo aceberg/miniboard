@@ -1,10 +1,9 @@
 package web
 
 import (
-	// "log"
 	"net/http"
+	"strings"
 
-	"github.com/aceberg/miniboard/internal/check"
 	"github.com/aceberg/miniboard/internal/models"
 )
 
@@ -33,7 +32,7 @@ func filterUptime(r *http.Request) []models.MonData {
 			resultUptimeMon = append(resultUptimeMon, mon)
 		}
 
-		if check.InSlice(mon.Notify, notify) {
+		if strings.Contains(mon.Notify, notify) && (notify != "") {
 			resultUptimeMon = append(resultUptimeMon, mon)
 		}
 	}

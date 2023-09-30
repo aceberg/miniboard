@@ -8,6 +8,7 @@ type Conf struct {
 	Color      string
 	Icon       string
 	ConfPath   string
+	DBPath     string
 	YamlPath   string
 	NodePath   string
 	ColorOn    string
@@ -50,15 +51,16 @@ type MonPanel struct {
 
 // MonData - for monitoring results
 type MonData struct {
-	Panel  string
-	Host   string
-	Addr   string
-	Port   string
-	Date   string
-	Time   string
-	Color  string
-	State  bool
-	Notify []string
+	ID     int    `db:"ID"`
+	Panel  string `db:"PANEL"`
+	Host   string `db:"HOST"`
+	Addr   string `db:"ADDR"`
+	Port   string `db:"PORT"`
+	Date   string `db:"DATE"`
+	Time   string `db:"TIME"`
+	Color  string `db:"COLOR"`
+	State  bool   `db:"STATE"`
+	Notify string `db:"NOTIFY"`
 }
 
 // Uptime - board element

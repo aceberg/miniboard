@@ -3,6 +3,7 @@ package web
 import (
 	// "log"
 	"fmt"
+	"strings"
 	"sync"
 	"time"
 
@@ -31,7 +32,7 @@ func appendUptimeMon(panelName string, host models.Host, notif bool) {
 	mon.State = host.State
 	if notif {
 		MuUptime.Lock()
-		mon.Notify = AllLinks.Uptime.Panels[panelName].Notify
+		mon.Notify = strings.Join(AllLinks.Uptime.Panels[panelName].Notify, " ")
 		MuUptime.Unlock()
 	}
 	UptimeMon = append(UptimeMon, mon)

@@ -43,9 +43,7 @@
                         {{ end }}
                     </td>
                     <td>
-                        {{ range .Notify }}
-                        <a href="/uptime/?filter=yes&notify={{ . }}">{{ . }}</a>
-                        {{ end }}
+                        <a href="/uptime/?filter=yes&notify={{ .Notify }}">{{ .Notify }}</a>
                     </td>
                 </tr>
                 {{ end }}
