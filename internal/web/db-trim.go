@@ -36,4 +36,6 @@ func trimDB() {
 			db.Delete(AppConfig.DBPath, hist.ID)
 		}
 	}
+
+	UptimeMon = db.Select(AppConfig.DBPath)
 }
