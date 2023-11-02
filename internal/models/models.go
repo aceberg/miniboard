@@ -9,6 +9,7 @@ type Conf struct {
 	Icon       string
 	ConfPath   string
 	DBPath     string
+	DBTrimDays string
 	YamlPath   string
 	NodePath   string
 	ColorOn    string

@@ -1,6 +1,8 @@
 package db
 
 import (
+	"sync"
+
 	"github.com/jmoiron/sqlx"
 
 	// Import module for SQLite DB
@@ -9,6 +11,8 @@ import (
 	"github.com/aceberg/miniboard/internal/check"
 	"github.com/aceberg/miniboard/internal/models"
 )
+
+var mu sync.Mutex
 
 func connect(path string) *sqlx.DB {
 	dbx, err := sqlx.Connect("sqlite", path)
@@ -19,9 +23,11 @@ func connect(path string) *sqlx.DB {
 
 func exec(path string, sqlStatement string) {
 
+	mu.Lock()
 	dbx := connect(path)
-
 	_, err := dbx.Exec(sqlStatement)
+	mu.Unlock()
+
 	check.IfError(err)
 }
 
@@ -29,9 +35,11 @@ func exec(path string, sqlStatement string) {
 func Select(path string) []models.MonData {
 	var recs []models.MonData
 
+	mu.Lock()
 	dbx := connect(path)
-
 	err := dbx.Select(&recs, "SELECT * FROM records ORDER BY ID DESC")
+	mu.Unlock()
+
 	check.IfError(err)
 
 	return recs

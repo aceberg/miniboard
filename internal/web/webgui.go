@@ -21,8 +21,9 @@ func Gui(confPath, yamlPath, dbPath, nodePath string) {
 
 	log.Println("INFO: starting web gui with config", AppConfig.ConfPath)
 
-	go dbRoutine() // db-routine.go
-	reloadScans()  // webgui.go
+	go dbRoutine()     // db-routine.go
+	reloadScans()      // webgui.go
+	go trimDBRoutine() // db-trim.go
 
 	address := AppConfig.Host + ":" + AppConfig.Port
 

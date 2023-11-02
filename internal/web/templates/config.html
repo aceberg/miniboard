@@ -52,6 +52,10 @@
                     <td><input name="refresh" type="text" class="form-control" value="{{ .Config.WebRefresh }}" placeholder="Seconds"></td>
                 </tr>
                 <tr>
+                    <td>Trim DB after (days)</td>
+                    <td><input name="dbtrim" type="number" class="form-control" value="{{ .Config.DBTrimDays }}" placeholder="Days"></td>
+                </tr>
+                <tr>
                     <td><button type="submit" class="btn btn-primary">Save</button></td>
                     <td></td>
                 </tr>
