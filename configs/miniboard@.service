@@ -6,7 +6,7 @@ Wants=network-online.target
 
 [Service]
 User=%i
-ExecStart=/usr/bin/miniboard -c /home/%i/.config/miniboard/config.yaml -b /home/%i/.config/miniboard/board.yaml
+ExecStart=/usr/bin/miniboard -c /home/%i/.config/miniboard/config.yaml -b /home/%i/.config/miniboard/board.yaml -d /home/%i/.config/miniboard/uptime.db
 Restart=on-failure
 
 [Install]

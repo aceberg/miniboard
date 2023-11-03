@@ -5,7 +5,7 @@ After=network-online.target
 Wants=network-online.target
 
 [Service]
-ExecStart=/usr/bin/miniboard -c /etc/miniboard/config.yaml -b /etc/miniboard/board.yaml
+ExecStart=/usr/bin/miniboard -c /etc/miniboard/config.yaml -b /etc/miniboard/board.yaml -d /etc/miniboard/uptime.db
 Restart=on-failure
 
 [Install]

@@ -2,6 +2,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.1.0] - 2023-11-03
+### Added
+- Local selfhosted icons ([README](https://github.com/aceberg/miniboard#local-network-only))
+- Uptime history stored in SQLite DB
+
 ## [1.0.9] - 2023-09-13
 ### Fixed
 - Docker image changed from `scratch` to `alpine`, to fix `shoutrrr` notifications problem

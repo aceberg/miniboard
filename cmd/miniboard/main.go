@@ -17,7 +17,7 @@ const dbPath = "/data/miniboard/uptime.db"
 func main() {
 	yamlPtr := flag.String("b", yamlPath, "Path to board yaml file")
 	confPtr := flag.String("c", confPath, "Path to config yaml file")
-	dbPtr := flag.String("d", dbPath, "Path to sqlite DB file")
+	dbPtr := flag.String("d", dbPath, "Path to SQLite DB file")
 	nodePtr := flag.String("n", nodePath, "Path to node modules")
 	flag.Parse()
 

@@ -56,6 +56,7 @@ Configuration can be done through config file or environment variables
 | COLOROFF | Offline host color | #ff3232 |
 | BTNWIDTH | Adjust buttons to theme | 180px |
 | WEBREFRESH | Refresh interval for Tabs and Uptime pages (seconds) | 60 |
+| DBTRIMDAYS | Remove old records from DB after | 30 |
 | TZ | Time zone (for uptime monitor) | "" |
 
 ## Options
@@ -63,14 +64,16 @@ Configuration can be done through config file or environment variables
 | --------  | ----------- | ------- | 
 | -b | Path to board file | /data/miniboard/board.yaml |
 | -c | Path to config file | /data/miniboard/config.yaml |
+| -d | Path to SQLite DB file | /data/miniboard/uptime.db |
 | -n | Path to node modules (see below) | "" |
 
 ## Local network only
-By default, this app pulls themes, icons and fonts from the internet. But, in some cases, it may be useful to have an independent from global network setup. I created a separate [image](https://github.com/aceberg/my-dockerfiles/tree/main/node-bootstrap) with all necessary modules and fonts.
-Run with Docker:
+By default, this app pulls themes, icons and fonts from the internet. But, in some cases, it may be useful to have an independent from global network setup. I created a separate [image](https://github.com/aceberg/my-dockerfiles/tree/main/node-bootstrap) with all necessary modules and fonts.    
+If you want to use local icons, download them and mount icon folder (`~/.dockerdata/icons` in this example) to `/app/icons`. Then you can open it in browser and copy each icon link to miniboard.
 ```sh
-docker run --name node-bootstrap          \
-    -p 8850:8850                          \
+docker run --name node-bootstrap       \
+    -v ~/.dockerdata/icons:/app/icons  \ # For local icons
+    -p 8850:8850                       \
     aceberg/node-bootstrap
 ```
 ```sh

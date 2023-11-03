@@ -5,6 +5,8 @@ services:
     restart: unless-stopped
     ports:
     - 8850:8850
+    volumes:
+    - ~/.dockerdata/icons:/app/icons  # For local icons
   miniboard:
     image: aceberg/miniboard
     restart: unless-stopped
