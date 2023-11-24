@@ -3,10 +3,13 @@ package web
 import (
 	"embed"
 
+	"github.com/aceberg/miniboard/internal/auth"
 	"github.com/aceberg/miniboard/internal/models"
 )
 
 var (
+	authConf auth.Conf
+
 	// AppConfig - config for Web Gui
 	AppConfig models.Conf
 	// AllLinks - all links

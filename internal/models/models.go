@@ -1,5 +1,9 @@
 package models
 
+import (
+	"github.com/aceberg/miniboard/internal/auth"
+)
+
 // Conf - web gui config
 type Conf struct {
 	Host       string
@@ -16,6 +20,7 @@ type Conf struct {
 	ColorOff   string
 	BtnWidth   string
 	WebRefresh string
+	Auth       bool
 	Quit       chan bool
 }
 
@@ -89,4 +94,5 @@ type GuiData struct {
 	TabEdit    int
 	UptimeMon  []MonData
 	Version    string
+	Auth       auth.Conf
 }

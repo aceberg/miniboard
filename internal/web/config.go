@@ -42,7 +42,7 @@ func saveConfigHandler(w http.ResponseWriter, r *http.Request) {
 		AppConfig.WebRefresh = "Do not use zero!"
 	}
 
-	conf.Write(AppConfig)
+	conf.Write(AppConfig, authConf)
 
 	http.Redirect(w, r, r.Header.Get("Referer"), 302)
 }

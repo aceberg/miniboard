@@ -51,8 +51,13 @@
                     <i class="bi bi-list"></i>
                 </a>
                 <ul class="dropdown-menu">
+                    {{ if .Config.Auth }}
+                    <li><a class="dropdown-item" href="/login/?logout=yes">Log Out</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    {{ end }}
                     <li><a class="dropdown-item" href="/config/">Config</a></li>
                     <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="/auth_conf/">Edit auth</a></li>
                     <li><a class="dropdown-item" href="/panels/">Edit panels</a></li>
                     <li><a class="dropdown-item" href="/tabs/">Edit tabs</a></li>
                     <li><a class="dropdown-item" href="/uptime_edit/">Edit uptime</a></li>

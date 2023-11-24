@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/aceberg/miniboard/internal/auth"
 	"github.com/aceberg/miniboard/internal/check"
 	"github.com/aceberg/miniboard/internal/conf"
 	"github.com/aceberg/miniboard/internal/yaml"
@@ -12,7 +13,7 @@ import (
 // Gui - start web server
 func Gui(confPath, yamlPath, dbPath, nodePath string) {
 
-	AppConfig = conf.Get(confPath)
+	AppConfig, authConf = conf.Get(confPath)
 	AppConfig.ConfPath = confPath
 	AppConfig.NodePath = nodePath
 	AppConfig.YamlPath = yamlPath
@@ -31,17 +32,21 @@ func Gui(confPath, yamlPath, dbPath, nodePath string) {
 	log.Printf("Web GUI at http://%s", address)
 	log.Println("=================================== ")
 
-	http.HandleFunc("/", indexHandler)                  // index.go
-	http.HandleFunc("/config/", configHandler)          // config.go
-	http.HandleFunc("/config_save/", saveConfigHandler) // config.go
-	http.HandleFunc("/file/", fileHandler)              // file.go
-	http.HandleFunc("/host/", hostHandler)              // host.go
-	http.HandleFunc("/panels/", panelsHandler)          // panels.go
-	http.HandleFunc("/panel_edit/", panelEditHandler)   // panel-edit.go
-	http.HandleFunc("/tabs/", tabsHandler)              // tabs.go
-	http.HandleFunc("/tab_edit/", tabEditHandler)       // tab-edit.go
-	http.HandleFunc("/uptime/", uptimeHandler)          // uptime.go
-	http.HandleFunc("/uptime_edit/", uptimeEditHandler) // uptime-edit.go
+	http.HandleFunc("/", indexHandler)         // index.go
+	http.HandleFunc("/login/", loginHandler)   // login.go
+	http.HandleFunc("/uptime/", uptimeHandler) // uptime.go
+
+	http.HandleFunc("/auth_conf/", auth.Auth(authConfHandler, &authConf))     // auth.go
+	http.HandleFunc("/auth_save/", auth.Auth(saveAuthHandler, &authConf))     // auth.go
+	http.HandleFunc("/config/", auth.Auth(configHandler, &authConf))          // config.go
+	http.HandleFunc("/config_save/", auth.Auth(saveConfigHandler, &authConf)) // config.go
+	http.HandleFunc("/file/", auth.Auth(fileHandler, &authConf))              // file.go
+	http.HandleFunc("/host/", auth.Auth(hostHandler, &authConf))              // host.go
+	http.HandleFunc("/panels/", auth.Auth(panelsHandler, &authConf))          // panels.go
+	http.HandleFunc("/panel_edit/", auth.Auth(panelEditHandler, &authConf))   // panel-edit.go
+	http.HandleFunc("/tabs/", auth.Auth(tabsHandler, &authConf))              // tabs.go
+	http.HandleFunc("/tab_edit/", auth.Auth(tabEditHandler, &authConf))       // tab-edit.go
+	http.HandleFunc("/uptime_edit/", auth.Auth(uptimeEditHandler, &authConf)) // uptime-edit.go
 	err := http.ListenAndServe(address, nil)
 	check.IfError(err)
 }

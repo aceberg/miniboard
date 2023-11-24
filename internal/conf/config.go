@@ -3,13 +3,13 @@ package conf
 import (
 	"github.com/spf13/viper"
 
+	"github.com/aceberg/miniboard/internal/auth"
 	"github.com/aceberg/miniboard/internal/check"
 	"github.com/aceberg/miniboard/internal/models"
 )
 
 // Get - read config from file or env
-func Get(path string) models.Conf {
-	var config models.Conf
+func Get(path string) (config models.Conf, authConf auth.Conf) {
 
 	viper.SetDefault("HOST", "0.0.0.0")
 	viper.SetDefault("PORT", "8849")
@@ -20,6 +20,10 @@ func Get(path string) models.Conf {
 	viper.SetDefault("BTNWIDTH", "180px")
 	viper.SetDefault("WEBREFRESH", "60")
 	viper.SetDefault("DBTRIMDAYS", "30")
+
+	viper.SetDefault("AUTH_USER", "")
+	viper.SetDefault("AUTH_PASSWORD", "")
+	viper.SetDefault("AUTH_EXPIRE", "7d")
 
 	viper.SetConfigFile(path)
 	viper.SetConfigType("yaml")
@@ -38,11 +42,19 @@ func Get(path string) models.Conf {
 	config.WebRefresh, _ = viper.Get("WEBREFRESH").(string)
 	config.DBTrimDays, _ = viper.Get("DBTRIMDAYS").(string)
 
-	return config
+	authConf.Auth = viper.GetBool("AUTH")
+	authConf.User, _ = viper.Get("AUTH_USER").(string)
+	authConf.Password, _ = viper.Get("AUTH_PASSWORD").(string)
+	authConf.ExpStr, _ = viper.Get("AUTH_EXPIRE").(string)
+
+	authConf.Expire = auth.ToTime(authConf.ExpStr)
+	config.Auth = authConf.Auth
+
+	return config, authConf
 }
 
 // Write - write config to file
-func Write(config models.Conf) {
+func Write(config models.Conf, authConf auth.Conf) {
 
 	viper.SetConfigFile(config.ConfPath)
 	viper.SetConfigType("yaml")
@@ -56,6 +68,11 @@ func Write(config models.Conf) {
 	viper.Set("btnwidth", config.BtnWidth)
 	viper.Set("webrefresh", config.WebRefresh)
 	viper.Set("dbtrimdays", config.DBTrimDays)
+
+	viper.Set("auth", authConf.Auth)
+	viper.Set("auth_user", authConf.User)
+	viper.Set("auth_password", authConf.Password)
+	viper.Set("auth_expire", authConf.ExpStr)
 
 	err := viper.WriteConfig()
 	check.IfError(err)
