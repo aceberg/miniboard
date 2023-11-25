@@ -15,16 +15,23 @@ func uptimeEditHandler(w http.ResponseWriter, r *http.Request) {
 	guiData.Config = AppConfig
 	guiData.CurrentTab = "Edit Uptime"
 
+	auth := r.FormValue("auth")
 	edit := r.FormValue("edit")
 	enable := r.FormValue("enable")
 	delnotify := r.FormValue("delnotify")
 	delpanel := r.FormValue("delpanel")
-	nname := r.FormValue("nname")
 	link := r.FormValue("link")
 	newpanel := r.FormValue("newpanel")
+	nname := r.FormValue("nname")
 	show := r.FormValue("show")
 	testNotify := r.FormValue("testnotify")
 
+	if auth == "yes" {
+		AllLinks.Uptime.Auth = true
+	}
+	if auth == "no" {
+		AllLinks.Uptime.Auth = false
+	}
 	if enable == "yes" {
 		AllLinks.Uptime.Enabled = true
 	}

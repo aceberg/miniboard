@@ -20,6 +20,17 @@ func tabEditHandler(w http.ResponseWriter, r *http.Request) {
 	tab, _ := strconv.Atoi(tabStr)
 	guiData.TabEdit = tab
 
+	if action == "authyes" {
+		tmpTab := AllLinks.Tabs[tab]
+		tmpTab.Auth = true
+		AllLinks.Tabs[tab] = tmpTab
+	}
+	if action == "authno" {
+		tmpTab := AllLinks.Tabs[tab]
+		tmpTab.Auth = false
+		AllLinks.Tabs[tab] = tmpTab
+	}
+
 	if action == "addpan" { // Add panels
 		panels := r.PostForm["panels"]
 

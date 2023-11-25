@@ -18,6 +18,22 @@
                     </a>
                 </div>
             </div>
+            <br>
+                <form action="/tab_edit/" method="post" class="input-group">
+                    <input name="tab" type="hidden" value="{{ $key }}">
+                    <span class="input-group-text">Needs auth to view</span>
+                    <select name="action" class="form-select">
+                        {{ if .Auth }}
+                            <option selected>yes</option>
+                        {{ else }}
+                            <option selected>no</option>
+                        {{ end }}
+                        <option value="authyes">yes</option>
+                        <option value="authno">no</option>
+                    </select>
+                    <button type="submit" class="btn btn-outline-success"><i class="bi bi-check2"></i></button>
+                </form>
+            <br>
             <table class="table table-striped">
                 <thead>
                     <th style="width: 1em;">Del</th>
