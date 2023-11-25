@@ -44,6 +44,7 @@ func Gui(confPath, yamlPath, dbPath, nodePath string) {
 	http.HandleFunc("/host/", auth.Auth(hostHandler, &authConf))              // host.go
 	http.HandleFunc("/panels/", auth.Auth(panelsHandler, &authConf))          // panels.go
 	http.HandleFunc("/panel_edit/", auth.Auth(panelEditHandler, &authConf))   // panel-edit.go
+	http.HandleFunc("/reload/", auth.Auth(reloadHandler, &authConf))          // index.go
 	http.HandleFunc("/tabs/", auth.Auth(tabsHandler, &authConf))              // tabs.go
 	http.HandleFunc("/tab_edit/", auth.Auth(tabEditHandler, &authConf))       // tab-edit.go
 	http.HandleFunc("/uptime_edit/", auth.Auth(uptimeEditHandler, &authConf)) // uptime-edit.go

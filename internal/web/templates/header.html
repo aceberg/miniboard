@@ -51,7 +51,7 @@
                     <i class="bi bi-list"></i>
                 </a>
                 <ul class="dropdown-menu">
-                    {{ if .Config.Auth }}
+                    {{ if .Config.LoggedIn }}
                     <li><a class="dropdown-item" href="/login/?logout=yes">Log Out</a></li>
                     <li><hr class="dropdown-divider"></li>
                     {{ end }}
@@ -63,7 +63,7 @@
                     <li><a class="dropdown-item" href="/uptime_edit/">Edit uptime</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="/file/">Edit board file</a></li>
-                    <li><a class="dropdown-item" href="/?reload=yes">Reload</a></li>
+                    <li><a class="dropdown-item" href="/reload/">Reload</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" target="_blank" href="https://github.com/aceberg/miniboard">About</a></li>
                 </ul>

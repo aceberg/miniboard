@@ -27,5 +27,7 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 		auth.LogOut(w, r)
 	}
 
+	AppConfig.LoggedIn = auth.IsLoggedIn(w, r)
+
 	execTemplate(w, "login", guiData)
 }

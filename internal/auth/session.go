@@ -31,3 +31,16 @@ func LogOut(w http.ResponseWriter, r *http.Request) {
 
 	http.Redirect(w, r, "/", 302)
 }
+
+// IsLoggedIn - check if user logged in
+func IsLoggedIn(w http.ResponseWriter, r *http.Request) bool {
+
+	sessionToken := getTokenFromCookie(r)
+
+	userSession, exists := allSessions[sessionToken]
+	if !exists || userSession.Before(time.Now()) {
+		return false
+	}
+
+	return true
+}

@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/aceberg/miniboard/internal/auth"
 	"github.com/aceberg/miniboard/internal/models"
 )
 
@@ -11,20 +12,17 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	var guiData models.GuiData
 	guiData.Config = AppConfig
 
-	reload := r.URL.Query().Get("reload")
-	if reload == "yes" {
-
-		reloadScans() // webgui.go
-
-		http.Redirect(w, r, "/", 302)
-	}
-
 	tabStr := r.URL.Query().Get("tab")
 	var tab int
 	if tabStr == "" {
 		tab = 0
 	} else {
 		tab, _ = strconv.Atoi(tabStr)
+	}
+
+	AppConfig.LoggedIn = auth.IsLoggedIn(w, r)
+	if AppConfig.Auth && !AppConfig.LoggedIn && AllLinks.Tabs[tab].Auth {
+		http.Redirect(w, r, "/login/", 302)
 	}
 
 	guiData.CurrentTab = AllLinks.Tabs[tab].Name
@@ -40,4 +38,11 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	execTemplate(w, "index", guiData)
+}
+
+func reloadHandler(w http.ResponseWriter, r *http.Request) {
+
+	reloadScans() // webgui.go
+
+	http.Redirect(w, r, "/", 302)
 }

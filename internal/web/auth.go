@@ -17,6 +17,9 @@ func authConfHandler(w http.ResponseWriter, r *http.Request) {
 	guiData.Auth.User = authConf.User
 	guiData.Auth.ExpStr = authConf.ExpStr
 
+	guiData.CurrentTab = "Edit auth"
+	guiData.Links = AllLinks
+
 	execTemplate(w, "auth", guiData)
 }
 

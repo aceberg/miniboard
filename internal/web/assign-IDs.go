@@ -53,6 +53,7 @@ func assignPanelIDs(tab int) {
 	sort.Ints(keys)
 
 	newTab.Name = AllLinks.Tabs[tab].Name
+	newTab.Auth = AllLinks.Tabs[tab].Auth
 	newTab.Refresh = AllLinks.Tabs[tab].Refresh
 	newTab.Panels = make(map[int]string)
 	i := 0

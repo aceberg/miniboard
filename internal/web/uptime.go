@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"sort"
 
+	"github.com/aceberg/miniboard/internal/auth"
 	"github.com/aceberg/miniboard/internal/models"
 )
 
@@ -13,6 +14,11 @@ func uptimeHandler(w http.ResponseWriter, r *http.Request) {
 	guiData.Config = AppConfig
 	guiData.CurrentTab = "Uptime Monitor"
 	guiData.Links = AllLinks
+
+	AppConfig.LoggedIn = auth.IsLoggedIn(w, r)
+	if AppConfig.Auth && !AppConfig.LoggedIn && AllLinks.Uptime.Auth {
+		http.Redirect(w, r, "/login/", 302)
+	}
 
 	filter := r.FormValue("filter")
 

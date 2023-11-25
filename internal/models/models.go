@@ -21,6 +21,7 @@ type Conf struct {
 	BtnWidth   string
 	WebRefresh string
 	Auth       bool
+	LoggedIn   bool
 	Quit       chan bool
 }
 
@@ -45,6 +46,7 @@ type Panel struct {
 // Tab - board element
 type Tab struct {
 	Name    string         `yaml:"name"`
+	Auth    bool           `yaml:"needs_auth"`
 	Refresh string         `yaml:"refresh"`
 	Panels  map[int]string `yaml:"panels"`
 }
@@ -72,6 +74,7 @@ type MonData struct {
 // Uptime - board element
 type Uptime struct {
 	Enabled bool                `yaml:"enabled"`
+	Auth    bool                `yaml:"needs_auth"`
 	Show    int                 `yaml:"show"`
 	Notify  map[string]string   `yaml:"notify"`
 	Panels  map[string]MonPanel `yaml:"panels"`
