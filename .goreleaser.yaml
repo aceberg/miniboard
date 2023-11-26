@@ -48,7 +48,7 @@ nfpms:
 
 archives:
   - files:
-    - LICENSE.md
+    - LICENSE
     - README.md
     - CHANGELOG.md
     - src: ./configs/miniboard.service
