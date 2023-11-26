@@ -2,6 +2,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+
+## [1.2.0] - 2023-11-26
+### Added
+- Session cookie auth [Issue #10](https://github.com/aceberg/miniboard/issues/10)
+- Binaries with Goreleaser
+
 ## [1.1.0] - 2023-11-03
 ### Added
 - Local selfhosted icons ([README](https://github.com/aceberg/miniboard#local-network-only))

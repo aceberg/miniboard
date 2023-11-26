@@ -1,12 +1,14 @@
 tabs:
     0:  # Tab IDs (integer). Default tab has ID 0
         name: Tab1  # Tab name 
+        needs_auth: false
         refresh: "" # Refresh Webpage (seconds). Leave blank for system-wide config:WebRefresh to work
         panels:     # Panels on this tab
             0: Search   # Place ID (integer):Panel ID (string)
             1: Panel2   # Use Place ID to sort Panels on Tab
     1:
         name: Tab2
+        needs_auth: true # If true and auth is enabled, only logged in user will be able to view this tab
         refresh: "240"
         panels:
             0: Search
@@ -40,6 +42,7 @@ panels:
                 icon: ""
 uptime:
     enabled: true   # Enable uptime monitoring
+    needs_auth: false # If true and auth is enabled, only logged in user will be able to view
     show: 30        # Lines to show on Uptime page (Default: 20)
     notify:         # URLs to notify (See Shoutrrr docs: https://containrrr.dev/shoutrrr/0.7/services/overview/)
         gotify: gotify://192.168.2.2:8083/A2MD-k4uzC8-zuA/?title=Host status changed&DisableTLS=yes # Gotify example
