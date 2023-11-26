@@ -63,7 +63,9 @@
         </table>
         </div>
         <div class="col">
-            <p>Current version: {{ .Version }}</p>
+            <div class="alert alert-primary" role="alert">
+                Current version: {{ .Version }}
+            </div>
             <div class="alert alert-info" role="alert">
                 <p>● After changing <b>Host</b> or <b>Port</b> you need to restart the app</p>
                 <p>● <b>Button Width</b> can be set in <b>px</b> or <b>em</b> to adjust buttons to theme. Example: 180px</p>

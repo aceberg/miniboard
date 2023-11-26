@@ -38,6 +38,9 @@
         </table>
         </div>
         <div class="col">
+            <div class="alert alert-primary" role="alert">
+                By default, auth only protects board from editing. If you want to forbid guests to view Tabs or Uptime, set <b>needs_auth</b> to <b>true</b> for each tab (can be done in <b>board.yaml</b> or in GUI)
+            </div>
             <div class="alert alert-info" role="alert">
                 <p>● <b>WARNING!</b> Authentication is only safe when used over <b>https</b> and with a strong password.</p>
                 <p>● <b>Expire after</b> - when user session expires. Can be set with suffixes <b>m</b>(minute), <b>h</b>(hour), <b>d</b>(day) or <b>M</b>(month). Default: <b>7d</b>.</p>
