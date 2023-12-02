@@ -7,6 +7,7 @@ import (
 	"github.com/aceberg/miniboard/internal/auth"
 	"github.com/aceberg/miniboard/internal/check"
 	"github.com/aceberg/miniboard/internal/conf"
+	"github.com/aceberg/miniboard/internal/db"
 	"github.com/aceberg/miniboard/internal/yaml"
 )
 
@@ -22,8 +23,10 @@ func Gui(confPath, yamlPath, dbPath, nodePath string) {
 
 	log.Println("INFO: starting web gui with config", AppConfig.ConfPath)
 
-	go dbRoutine() // db-routine.go
-	reloadScans()  // webgui.go
+	db.Create(AppConfig.DBPath)
+	UptimeMon = db.Select(AppConfig.DBPath)
+	// go dbRoutine() // db-routine.go
+	reloadScans() // webgui.go
 	// go trimDBRoutine() // db-trim.go
 
 	address := AppConfig.Host + ":" + AppConfig.Port
