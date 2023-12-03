@@ -2,45 +2,40 @@ package web
 
 import (
 	// "log"
+	// "runtime"
+	"sync"
 	"time"
 
 	"github.com/aceberg/miniboard/internal/db"
 	"github.com/aceberg/miniboard/internal/models"
 )
 
+var newUptimeMutex sync.Mutex
+
 func dbRoutine() {
-	var newUptimeMon []models.MonData
 	var mon models.MonData
+	var tmpUptimeMon []models.MonData
+
+	timeout := 1
 
 	db.Create(AppConfig.DBPath)
 	UptimeMon = db.Select(AppConfig.DBPath)
 
 	for {
-		newUptimeMon = db.Select(AppConfig.DBPath)
+		newUptimeMutex.Lock()
+		tmpUptimeMon = NewUptimeMon
+		NewUptimeMon = []models.MonData{}
+		newUptimeMutex.Unlock()
 
-		for _, mon = range UptimeMon {
-
-			if !inSlice(newUptimeMon, mon) {
-				// log.Println("NEW RECORD TO DB:", mon)
-				db.Insert(AppConfig.DBPath, mon)
-			}
+		for _, mon = range tmpUptimeMon {
+			db.Insert(AppConfig.DBPath, mon)
 		}
 
-		time.Sleep(time.Duration(3*60) * time.Second)
+		// // Analyzing goroutine leaks
+		// var stats runtime.MemStats
+		// runtime.ReadMemStats(&stats)
+		// log.Printf("Number of Goroutines: %d\n", runtime.NumGoroutine())
+
+		time.Sleep(time.Duration(timeout) * 60 * time.Second)
 	}
-}
-
-func inSlice(monSlice []models.MonData, elem models.MonData) bool {
-	var mon models.MonData
-
-	elem.ID = 0
-
-	for _, mon = range monSlice {
-		mon.ID = 0
-		if elem == mon {
-			return true
-		}
-	}
-
-	return false
 }

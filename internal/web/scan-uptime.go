@@ -36,6 +36,10 @@ func appendUptimeMon(panelName string, host models.Host, notif bool) {
 		MuUptime.Unlock()
 	}
 	UptimeMon = append(UptimeMon, mon)
+
+	newUptimeMutex.Lock()
+	NewUptimeMon = append(NewUptimeMon, mon)
+	newUptimeMutex.Unlock()
 }
 
 func scanUptime(panelName string, host models.Host, oldState bool) {

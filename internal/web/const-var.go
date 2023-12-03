@@ -16,6 +16,8 @@ var (
 	AllLinks models.Links
 	// UptimeMon - monitoring data
 	UptimeMon []models.MonData
+	// NewUptimeMon - not added to DB yet
+	NewUptimeMon []models.MonData
 )
 
 // TemplHTML - html templates

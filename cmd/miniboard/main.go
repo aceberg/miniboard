@@ -3,7 +3,6 @@ package main
 import (
 	"flag"
 
-	_ "net/http/pprof"
 	_ "time/tzdata"
 
 	"github.com/aceberg/miniboard/internal/check"
