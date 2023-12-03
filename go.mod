@@ -1,6 +1,6 @@
 module github.com/aceberg/miniboard
 
-go 1.21.2
+go 1.21.4
 
 require (
 	github.com/containrrr/shoutrrr v0.8.0
