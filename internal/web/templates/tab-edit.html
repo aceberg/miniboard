@@ -20,8 +20,8 @@
             </div>
             <br>
                 <form action="/tab_edit/" method="post" class="input-group">
-                    <input name="tab" type="hidden" value="{{ $key }}">
                     <span class="input-group-text">Needs auth to view</span>
+                    <input name="tab" type="hidden" value="{{ $key }}">
                     <select name="action" class="form-select">
                         {{ if .Auth }}
                             <option selected>yes</option>

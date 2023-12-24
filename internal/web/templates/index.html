@@ -9,7 +9,7 @@
             {{ range .Panels }}
             {{ if $.Horiz }}
             <a href="/panel_edit/?edit={{ .Name }}"><h5>{{ .Name }}</h5></a>
-            <div class="gap-2 hstack flex-wrap">
+            <div class="gap-3 hstack flex-wrap">
             {{ else }}
             <div class="col-md-auto">
                 <a class="text-center" href="/panel_edit/?edit={{ .Name }}"><h5>{{ .Name }}</h5></a>

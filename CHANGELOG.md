@@ -2,6 +2,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.2.2] - 2023-12-24
+### Added
+- Horizontal layout for tabs
+
 ## [1.2.1] - 2023-12-04
 ### Fixed
 - Memory leak fix [Issue #11](https://github.com/aceberg/miniboard/issues/11)

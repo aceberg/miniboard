@@ -3,6 +3,7 @@ tabs:
         name: Tab1  # Tab name 
         needs_auth: false
         refresh: "" # Refresh Webpage (seconds). Leave blank for system-wide config:WebRefresh to work
+        horiz: false
         panels:     # Panels on this tab
             0: Search   # Place ID (integer):Panel ID (string)
             1: Panel2   # Use Place ID to sort Panels on Tab
@@ -10,6 +11,7 @@ tabs:
         name: Tab2
         needs_auth: true # If true and auth is enabled, only logged in user will be able to view this tab
         refresh: "240"
+        horiz: true # Horizontal layout if true
         panels:
             0: Search
 panels:
