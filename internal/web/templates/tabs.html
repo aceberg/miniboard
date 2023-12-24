@@ -4,7 +4,7 @@
     <div class="container">
         <br>
         <div class="row">
-        <div class="col">
+        <div class="col-8">
             <h4>Edit Tabs</h4>
             <table class="table table-striped">
                 <thead>
@@ -12,6 +12,7 @@
                     <th style="width: 2em;">ID</th>
                     <th style="width: 1em;">Up</th>
                     <th>Name</th>
+                    <th style="width: 1em;">Horiz</th>
                     <th style="width: 4em;" title="Refresh (seconds). Leave blank for system-wide config:WebRefresh to work"><i class="bi bi-question-circle"></i></th>
                     <th>Panels</th>
                     <th style="width: 1em;"></th>
@@ -34,6 +35,15 @@
                     <input name="id" type="hidden" value="{{ $id }}">
                     <input name="panels" type="hidden" value="{{ .Panels }}">
                     <td><input name="name" type="text" class="form-control" value="{{ .Name }}"></td>
+                    <td>
+                        <div class="form-check">
+                            {{ if .Horiz }}
+                            <input class="form-check-input" type="checkbox" name="horiz" checked>
+                            {{ else }}
+                            <input class="form-check-input" type="checkbox" name="horiz">
+                            {{ end }}
+                        </div>
+                    </td>
                     <td><input name="refresh" type="text" class="form-control" value="{{ .Refresh }}"></td>
                     <td>{{ range .Panels }}
                         <a href="/panel_edit/?edit={{ . }}">{{ . }}</a>&nbsp;
@@ -44,7 +54,7 @@
                 {{ end }}
             </table>
         </div>
-        <div class="col">
+        <div class="col-4">
             <h4>New Tab</h4>
             <table class="table">
             <form action="/tabs/" method="post">

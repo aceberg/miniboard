@@ -55,6 +55,7 @@ func assignPanelIDs(tab int) {
 	newTab.Name = AllLinks.Tabs[tab].Name
 	newTab.Auth = AllLinks.Tabs[tab].Auth
 	newTab.Refresh = AllLinks.Tabs[tab].Refresh
+	newTab.Horiz = AllLinks.Tabs[tab].Horiz
 	newTab.Panels = make(map[int]string)
 	i := 0
 	for _, k := range keys {

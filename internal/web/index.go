@@ -27,6 +27,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 	guiData.CurrentTab = AllLinks.Tabs[tab].Name
 	guiData.Links = AllLinks
+	guiData.Horiz = AllLinks.Tabs[tab].Horiz
 
 	if AllLinks.Tabs[tab].Refresh != "" && AllLinks.Tabs[tab].Refresh != "0" {
 		guiData.Config.WebRefresh = AllLinks.Tabs[tab].Refresh

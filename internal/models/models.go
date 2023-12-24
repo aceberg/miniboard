@@ -48,6 +48,7 @@ type Tab struct {
 	Name    string         `yaml:"name"`
 	Auth    bool           `yaml:"needs_auth"`
 	Refresh string         `yaml:"refresh"`
+	Horiz   bool           `yaml:"horiz"`
 	Panels  map[int]string `yaml:"panels"`
 }
 
@@ -98,4 +99,5 @@ type GuiData struct {
 	UptimeMon  []MonData
 	Version    string
 	Auth       auth.Conf
+	Horiz      bool
 }

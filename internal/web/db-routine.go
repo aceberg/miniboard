@@ -16,7 +16,7 @@ func dbRoutine() {
 	var mon models.MonData
 	var tmpUptimeMon []models.MonData
 
-	timeout := 1
+	timeout := 5
 
 	db.Create(AppConfig.DBPath)
 	UptimeMon = db.Select(AppConfig.DBPath)
