@@ -23,6 +23,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	AppConfig.LoggedIn = auth.IsLoggedIn(w, r)
 	if AppConfig.Auth && !AppConfig.LoggedIn && AllLinks.Tabs[tab].Auth {
 		http.Redirect(w, r, "/login/", 302)
+		return
 	}
 
 	guiData.CurrentTab = AllLinks.Tabs[tab].Name
