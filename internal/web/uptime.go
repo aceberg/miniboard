@@ -18,6 +18,7 @@ func uptimeHandler(w http.ResponseWriter, r *http.Request) {
 	AppConfig.LoggedIn = auth.IsLoggedIn(w, r)
 	if AppConfig.Auth && !AppConfig.LoggedIn && AllLinks.Uptime.Auth {
 		http.Redirect(w, r, "/login/", 302)
+		return
 	}
 
 	filter := r.FormValue("filter")
